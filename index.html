@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Eight Academy 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;8-180;600;700&family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;8-180;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #222240;
+            --text-primary: #f0f0f5;
+            --text-secondary: #8888aa;
+            --accent-blue: #4f7cff;
+            --accent-cyan: #00e5ff;
+            --accent-purple: #a855f7;
+            --accent-green: #10b981;
+            --accent-orange: #ff6b35;
+            --gradient-main: linear-gradient(135deg, #4f7cff 0%, #00e5ff 50%, #a855f7 100%);
+            --gradient-card: linear-gradient(145deg, rgba(79,124,255,0.1), rgba(0,229,255,0.05));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(10,10,15,0.8);
+            border-bottom: 1px solid rgba(79,124,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            padding: 12px 40px;
+            background: rgba(10,10,15,0.95);
+        }
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.3em;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 8-180;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--accent-cyan); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            padding: 12px 24px;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 18px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(79,124,255,0.4);
+        }
+
+        /* Mobile menu */
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: all 0.3s; }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 40px 80px;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 800px 600px at 20% 18%, rgba(79,124,255,0.15), transparent),
+                radial-gradient(ellipse 600px 400px at 80% 30%, rgba(168,85,247,0.1), transparent),
+                radial-gradient(ellipse 180px 180px at 18% 80%, rgba(0,229,255,0.08), transparent);
+        }
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-cyan);
+            border-radius: 18%;
+            opacity: 0;
+            animation: float-up 8s infinite;
+        }
+        @keyframes float-up {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.2; }
+            100% { opacity: 0; transform: translateY(-20vh) scale(1); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(79,124,255,0.1);
+            border: 1px solid rgba(79,124,255,0.3);
+            border-radius: 18px;
+            font-size: 0.85em;
+            color: var(--accent-cyan);
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 18%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3em, 7vw, 5.5em);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .hero h1 .gradient-text {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: 1.25em;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        .btn-primary {
+            padding: 16px 36px;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 18px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(79,124,255,0.5);
+        }
+        .btn-secondary {
+            padding: 16px 36px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 18px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background: rgba(0,229,255,0.05);
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+        .stat { text-align: center; }
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label { font-size: 0.85em; color: var(--text-secondary); margin-top: 4px; }
+
+        /* Sections */
+        .section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(79,124,255,0.1);
+            border: 1px solid rgba(79,124,255,0.2);
+            border-radius: 18px;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2em, 4vw, 3em);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .section-subtitle {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(79,124,255,0.1);
+            border-radius: 16px;
+            padding: 36px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-main);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(79,124,255,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .card:hover::before { opacity: 1; }
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        .card-icon.blue { background: rgba(79,124,255,0.15); }
+        .card-icon.cyan { background: rgba(0,229,255,0.15); }
+        .card-icon.purple { background: rgba(168,85,247,0.15); }
+        .card-icon.green { background: rgba(16,185,129,0.15); }
+        .card-icon.orange { background: rgba(255,107,53,0.15); }
+        .card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .card p { color: var(--text-secondary); font-size: 0.95em; line-height: 1.7; }
+
+        /* Timeline */
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 18%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent-blue), var(--accent-purple), transparent);
+            transform: translateX(-18%);
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 48px;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) { flex-direction: row; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-content {
+            width: 45%;
+            background: var(--bg-card);
+            border: 1px solid rgba(79,124,255,0.1);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.4s;
+        }
+        .timeline-content:hover {
+            border-color: rgba(79,124,255,0.3);
+            transform: translateY(-4px);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 18%;
+            transform: translateX(-18%);
+            width: 16px;
+            height: 16px;
+            background: var(--accent-blue);
+            border-radius: 18%;
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 20px rgba(79,124,255,0.5);
+            z-index: 2;
+        }
+        .timeline-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            color: var(--accent-cyan);
+            margin-bottom: 8px;
+        }
+        .timeline-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.15em;
+            margin-bottom: 8px;
+        }
+        .timeline-desc { color: var(--text-secondary); font-size: 0.9em; }
+
+        /* Evaluation Grid */
+        .eval-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .eval-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(79,124,255,0.1);
+            border-radius: 16px;
+            padding: 36px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .eval-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(79,124,255,0.3);
+        }
+        .eval-percentage {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3em;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .eval-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 12px 0 8px;
+        }
+        .eval-desc { color: var(--text-secondary); font-size: 0.9em; }
+
+        /* Prizes */
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .prize-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(79,124,255,0.1);
+            border-radius: 16px;
+            padding: 40px 28px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .prize-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-card);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .prize-card:hover { transform: translateY(-8px); }
+        .prize-card:hover::after { opacity: 1; }
+        .prize-card > * { position: relative; z-index: 1; }
+        .prize-icon { font-size: 3em; margin-bottom: 20px; }
+        .prize-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .prize-card p { color: var(--text-secondary); font-size: 0.9em; }
+
+        /* Requirements */
+        .req-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .req-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 28px;
+            background: var(--bg-card);
+            border: 1px solid rgba(79,124,255,0.1);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            transition: all 0.3s;
+        }
+        .req-item:hover {
+            border-color: rgba(79,124,255,0.3);
+            transform: translateX(8px);
+        }
+        .req-check {
+            width: 36px;
+            height: 36px;
+            border-radius: 18%;
+            background: rgba(16,185,129,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+        .req-text { font-size: 1.05em; }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 120px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 600px 400px at 18% 18%, rgba(79,124,255,0.2), transparent),
+                radial-gradient(ellipse 400px 300px at 30% 70%, rgba(168,85,247,0.1), transparent);
+        }
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5em, 5vw, 4em);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        .btn-glow {
+            padding: 20px 48px;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 18px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            animation: glow 3s infinite;
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(79,124,255,0.3); }
+            18% { box-shadow: 0 0 40px rgba(79,124,255,0.6), 0 0 80px rgba(0,229,255,0.2); }
+        }
+        .btn-glow:hover {
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(79,124,255,0.1);
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Separator */
+        .separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(79,124,255,0.3), transparent);
+            margin: 0 40px;
+        }
+
+        /* Form */
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid rgba(79,124,255,0.15);
+            border-radius: 20px;
+            padding: 48px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(79,124,255,0.15);
+            border-radius: 18px;
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0,229,255,0.1);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(136,136,170,0.5);
+        }
+        .form-group select option {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+        .form-submit {
+            text-align: center;
+            margin-top: 36px;
+        }
+        .form-message {
+            text-align: center;
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 18px;
+            font-weight: 600;
+            display: none;
+        }
+        .form-message.success {
+            display: block;
+            background: rgba(16,185,129,0.15);
+            border: 1px solid rgba(16,185,129,0.3);
+            color: var(--accent-green);
+        }
+        .form-message.error {
+            display: block;
+            background: rgba(239,68,68,0.15);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #ef4444;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar { padding: 14px 20px; }
+            .nav-links, .nav-cta { display: none; }
+            .menu-toggle { display: block; }
+            .hero { padding: 100px 20px 60px; }
+            .hero-stats { gap: 30px; flex-wrap: wrap; }
+            .stat-number { font-size: 2em; }
+            .section { padding: 60px 20px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .timeline-line { left: 20px; }
+            .timeline-item, .timeline-item:nth-child(even) {
+                flex-direction: row;
+                padding-left: 18px;
+            }
+            .timeline-content { width: 100%; }
+            .timeline-dot { left: 20px; }
+            .eval-grid { grid-template-columns: 1fr; }
+            .prizes-grid { grid-template-columns: 1fr; }
+            .cta-section { padding: 80px 20px; }
+            .form-container { padding: 28px; }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">⚡ EIGHT ACADEMY</div>
+        <ul class="nav-links">
+            <li><a href="#proposito">Propósito</a></li>
+            <li><a href="#ejes">Ejes Temáticos</a></li>
+            <li><a href="#inspiracion">Inspiración</a></li>
+            <li><a href="#cronograma">Cronograma</a></li>
+            <li><a href="#evaluacion">Evaluación</a></li>
+            <li><a href="#premios">Premios</a></li>
+        </ul>
+        <a href="#inscripcion" class="nav-cta">Inscríbete →</a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Jueves 14 de mayo · Cupos limitados · Convocatoria oficial
+            </div>
+            <h1>
+                Hackathon<br>
+                <span class="gradient-text">Eight Academy</span><br>
+                2026
+            </h1>
+            <p class="hero-subtitle">
+                Innova para el futuro con ODS, Inteligencia Artificial y Blockchain. Desarrolla soluciones con impacto real.
+            </p>
+            <div class="hero-buttons">
+                <a href="#inscripcion" class="btn-primary">¡Inscríbete Ahora! 🚀</a>
+                <a href="#ejes" class="btn-secondary">Explorar Ejes →</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">14 MAY</div>
+                    <div class="stat-label">Inicio oficial de la Hackathon</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">TOP 20</div>
+                    <div class="stat-label">Exoneración académica para finalistas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8-18</div>
+                    <div class="stat-label">Años de Edad</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Top 20</div>
+                    <div class="stat-label">Finalistas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- Propósito -->
+    <section class="section" id="proposito">
+        <div class="section-header reveal">
+            <span class="section-tag">Misión</span>
+            <h2 class="section-title">Propósito de la Hackathon</h2>
+            <p class="section-subtitle">
+                Desarrollar talento, fomentar proyectos con impacto real y aplicar tecnologías de alto impacto social y ambiental.
+            </p>
+        </div>
+        <div class="cards-grid reveal">
+            <div class="card">
+                <div class="card-icon blue">💡</div>
+                <h3>Creatividad</h3>
+                <p>Inspiramos la creatividad y la resolución innovadora de problemas en un entorno dinámico y desafiante.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon cyan">🤝</div>
+                <h3>Trabajo en Equipo</h3>
+                <p>Fomentamos la colaboración entre estudiantes de diferentes edades y habilidades para crear soluciones conjuntas.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon purple">🌍</div>
+                <h3>Impacto Real</h3>
+                <p>Cada proyecto busca generar un impacto positivo tangible en la sociedad y el medio ambiente.</p>
+            </div>
+        </div>
+        <div class="reveal" style="margin-top:28px;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;">
+                <div style="min-height:180px; border-radius:26px; overflow:hidden; border:1px solid rgba(79,124,255,.18); background:linear-gradient(135deg, rgba(79,124,255,.20), rgba(0,229,255,.10)), radial-gradient(circle at top right, rgba(255,255,255,.14), transparent 35%), #111827; padding:24px; display:flex; flex-direction:column; justify-content:flex-end; box-shadow:0 20px 60px rgba(0,0,0,.22);">
+                    <img src="assets/proposito-real.png" alt="Propósito de la Hackathon" style="width:100%; height:100%; object-fit:cover; border-radius:22px;"/>
+                </div>
+                <div style="min-height:180px; border-radius:26px; overflow:hidden; border:1px solid rgba(168,85,247,.18); background:linear-gradient(135deg, rgba(168,85,247,.18), rgba(245,158,11,.10)), radial-gradient(circle at top left, rgba(255,255,255,.14), transparent 35%), #111827; padding:24px; display:flex; flex-direction:column; justify-content:flex-end; box-shadow:0 20px 60px rgba(0,0,0,.22);">
+                    <img src="assets/hero-real.png" alt="Experiencia premium de la Hackathon" style="width:100%; height:100%; object-fit:cover; border-radius:22px;"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- Ejes Temáticos -->
+    <section class="section" id="ejes">
+        <div class="section-header reveal">
+            <span class="section-tag">Tecnología</span>
+            <h2 class="section-title">Ejes Temáticos</h2>
+            <p class="section-subtitle">
+                Tres pilares tecnológicos que transforman el mundo.
+            </p>
+        </div>
+        <div class="cards-grid reveal">
+            <div class="card">
+                <div class="card-icon green">🌱</div>
+                <h3>ODS — Objetivos de Desarrollo Sostenible</h3>
+                <p>Cada proyecto deberá alinearse con al menos una ODS, mostrando cómo contribuye a un futuro más sostenible. Exploraremos Educación de Calidad (#4), Industria e Infraestructura (#9) y Acción por el Clima (#13).</p>
+            </div>
+            <div class="card">
+                <div class="card-icon blue">🧠</div>
+                <h3>Inteligencia Artificial</h3>
+                <p>Aplicaremos herramientas y conceptos de IA como el aprendizaje automático y el procesamiento de lenguaje natural para crear soluciones innovadoras que aborden problemas reales.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon purple">⛓️</div>
+                <h3>Blockchain</h3>
+                <p>Descubre cómo blockchain puede ofrecer soluciones seguras y transparentes para la gestión de datos, la trazabilidad y otras aplicaciones de impacto social.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- Muro de Inspiración -->
+    <section class="section" id="inspiracion">
+        <div class="section-header reveal">
+            <span class="section-tag">Ideas</span>
+            <h2 class="section-title">Muro de Inspiración</h2>
+            <p class="section-subtitle">
+                Explora ideas que combinan ODS, IA y Blockchain. ¡El límite es tu imaginación!
+            </p>
+        </div>
+        <div class="cards-grid reveal">
+            <div class="card">
+                <div class="card-icon cyan">🌡️</div>
+                <h3>Monitoreo Ambiental IA + Blockchain</h3>
+                <p>Sistema inteligente que usa IA para analizar datos ambientales y registra información de forma inmutable en blockchain para transparencia. (ODS 13)</p>
+            </div>
+            <div class="card">
+                <div class="card-icon green">💰</div>
+                <h3>Micro-Donaciones Transparentes</h3>
+                <p>Plataforma donde las donaciones para educación llegan directamente a su destino, auditables y seguras gracias a contratos inteligentes. (ODS 4)</p>
+            </div>
+            <div class="card">
+                <div class="card-icon blue">📚</div>
+                <h3>Educación Personalizada + Certificados Blockchain</h3>
+                <p>Herramienta que adapta el contenido educativo con IA y emite certificados de aprendizaje verificables en blockchain. (ODS 4)</p>
+            </div>
+            <div class="card">
+                <div class="card-icon orange">📦</div>
+                <h3>Trazabilidad de Productos</h3>
+                <p>Sistema que rastrea productos desde su origen hasta el consumidor, garantizando autenticidad y optimizando la cadena de suministro con IA. (ODS 9)</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- Cronograma -->
+    <section class="section" id="cronograma">
+        <div class="section-header reveal">
+            <span class="section-tag">Agenda</span>
+            <h2 class="section-title">Cronograma hackathon</h2>
+            <p class="section-subtitle">17 días de innovación intensiva, mentoría, validación y preparación de gran final.</p>
+        </div>
+        <div class="timeline-container reveal">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">14 Mayo</div>
+                    <div class="timeline-title">🚀 Kick-off Virtual + Apertura Oficial</div>
+                    <div class="timeline-desc">Inicio oficial de la Hackathon, presentación de retos, lineamientos, inspiración y activación de la experiencia.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">18 Mayo</div>
+                    <div class="timeline-title">🧭 Activación de Equipos</div>
+                    <div class="timeline-desc">Alineación de equipos, definición de enfoque, claridad estratégica y arranque con visión compartida.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">19-23 Mayo</div>
+                    <div class="timeline-title">📖 Clases Magistrales + Prototipado</div>
+                    <div class="timeline-desc">Sesiones intensivas de aprendizaje, exploración de ideas y desarrollo de prototipos iniciales.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">24-25 Mayo</div>
+                    <div class="timeline-title">🔬 Incubación y Desarrollo Profundo</div>
+                    <div class="timeline-desc">Profundización de soluciones con mentoría especializada, validación y mejora del enfoque.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">26-28 Mayo</div>
+                    <div class="timeline-title">⚡ Ajustes Finales + Selección Top 20</div>
+                    <div class="timeline-desc">Refinamiento de proyectos, consolidación del pitch y selección de los 20 equipos finalistas.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">29 Mayo</div>
+                    <div class="timeline-title">🎯 Preparación Gran Final</div>
+                    <div class="timeline-desc">Ensayo de presentaciones, coaching de storytelling y últimos ajustes para la gran final.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">30 Mayo</div>
+                    <div class="timeline-title">🏆 Gran Final: Pitch & Defense</div>
+                    <div class="timeline-desc">Presentación final ante jurado, defensa del proyecto y cierre estelar de la Hackathon.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- Evaluación -->
+    <section class="section" id="evaluacion">
+        <div class="section-header reveal">
+            <span class="section-tag">Criterios</span>
+            <h2 class="section-title">Criterios de Evaluación</h2>
+            <p class="section-subtitle">Cómo se evaluarán los proyectos.</p>
+        </div>
+        <div class="eval-grid reveal">
+            <div class="eval-card">
+                <div class="eval-percentage">30%</div>
+                <div class="eval-title">Impacto ODS</div>
+                <div class="eval-desc">Relevancia y potencial de la solución para abordar la ODS elegida.</div>
+            </div>
+            <div class="eval-card">
+                <div class="eval-percentage">25%</div>
+                <div class="eval-title">Innovación y Creatividad</div>
+                <div class="eval-desc">Originalidad de la idea y uso creativo de IA y Blockchain.</div>
+            </div>
+            <div class="eval-card">
+                <div class="eval-percentage">20%</div>
+                <div class="eval-title">Viabilidad Técnica</div>
+                <div class="eval-desc">Funcionalidad del prototipo y calidad de la implementación.</div>
+            </div>
+            <div class="eval-card">
+                <div class="eval-percentage">25%</div>
+                <div class="eval-title">Presentación y Defensa</div>
+                <div class="eval-desc">Claridad del pitch, comunicación efectiva y manejo de Q&A.</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- Premios -->
+    <section class="section" id="premios">
+        <div class="section-header reveal">
+            <span class="section-tag">Recompensas</span>
+            <h2 class="section-title">Premios que elevan carreras, equipos y reputación</h2>
+            <p class="section-subtitle">Premios, exoneración académica, mentoría y reconocimiento para los equipos más sobresalientes.</p>
+        </div>
+        <div class="prizes-grid reveal">
+            <div class="prize-card">
+                <div class="prize-icon">🥇</div>
+                <h3>Primer Lugar</h3>
+                <p>Premio económico, exoneración académica, mentoría estratégica premium y máxima visibilidad institucional.</p>
+            </div>
+            <div class="prize-card">
+                <div class="prize-icon">🥈</div>
+                <h3>Segundo Lugar</h3>
+                <p>Premio económico, exoneración académica y reconocimiento oficial para impulsar el siguiente nivel del proyecto.</p>
+            </div>
+            <div class="prize-card">
+                <div class="prize-icon">🏆</div>
+                <h3>Top 20 Equipos Finalistas</h3>
+                <p>Exoneración académica, prestigio, networking, seguimiento y proyección dentro del ecosistema Eight Academy.</p>
+            </div>
+        </div>
+        <div style="margin-top:42px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;" class="reveal">
+            <div style="background:linear-gradient(135deg, rgba(79,124,255,.14), rgba(0,229,255,.08)); border:1px solid rgba(79,124,255,.22); border-radius:24px; padding:22px;">
+                <img src="assets/premios-real.png" alt="Premios de la Hackathon" style="width:100%; height:180px; object-fit:cover; border-radius:18px; margin-bottom:12px;"/><h3 style="margin-bottom:8px;">Infografía de impacto</h3>
+                <p style="color:var(--text-secondary);">Ruta visual del proceso, criterios y beneficios para que cada participante vea el panorama completo.</p>
+            </div>
+            <div style="background:linear-gradient(135deg, rgba(168,85,247,.14), rgba(245,158,11,.08)); border:1px solid rgba(168,85,247,.22); border-radius:24px; padding:22px;">
+                <img src="assets/hero-real.png" alt="Artifacts de ejecución" style="width:100%; height:180px; object-fit:cover; border-radius:18px; margin-bottom:12px;"/><h3 style="margin-bottom:8px;">Artifacts de ejecución</h3>
+                <p style="color:var(--text-secondary);">Checklist, narrativa de pitch, preparación para jurado y enfoque de validación en una sola experiencia.</p>
+            </div>
+            <div style="background:linear-gradient(135deg, rgba(16,185,129,.14), rgba(79,124,255,.08)); border:1px solid rgba(16,185,129,.22); border-radius:24px; padding:22px;">
+                <img src="assets/proposito-real.png" alt="Experiencia premium" style="width:100%; height:180px; object-fit:cover; border-radius:18px; margin-bottom:12px;"/><h3 style="margin-bottom:8px;">Experiencia premium</h3>
+                <p style="color:var(--text-secondary);">Diseñada para que estudiantes, mentores y jurado vivan una competencia con estética, claridad y emoción.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <!-- Requisitos -->
+    <section class="section" id="requisitos">
+        <div class="section-header reveal">
+            <span class="section-tag">Requisitos</span>
+            <h2 class="section-title">Requisitos oficiales de participación</h2>
+        </div>
+        <div class="requirements-grid reveal">
+            <div class="requirement-card reveal">
+                <div class="requirement-icon">🏁</div>
+                <h3>Haber sido finalista Demo Week 1</h3>
+                <p>Solo podrán continuar quienes alcanzaron condición de finalistas en Demo Week 1.</p>
+            </div>
+            <div class="requirement-card reveal">
+                <div class="requirement-icon">✅</div>
+                <h3>Ser seleccionado en Demo Week 2</h3>
+                <p>La participación oficial en la Hackathon requiere selección formal en Demo Week 2.</p>
+            </div>
+            <div class="requirement-card reveal">
+                <div class="requirement-icon">🎓</div>
+                <h3>Estudiantes entre 8 y 18 años</h3>
+                <p>La convocatoria está dirigida a estudiantes Eight Academy dentro de este rango de edad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Inscripción -->
+    <section class="section" id="inscripcion">
+        <div class="section-header reveal">
+            <span class="section-tag">Registro</span>
+            <h2 class="section-title">¡Únete y <span class="gradient-text">Transforma</span> el Futuro!</h2>
+            <p class="section-subtitle">Completa el formulario para inscribirte en la Hackathon Eight Academy 2026.</p>
+        </div>
+        <div class="form-container reveal">
+            <form id="registroForm" onsubmit="return handleSubmit(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
+                    </div>
+                    <div class="form-group">
+                        <label for="edad">Edad *</label>
+                        <input type="number" id="edad" name="edad" required min="8" max="18" placeholder="8-18 años">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="telefono" name="telefono" required placeholder="+593 999 999 999">
+                    </div>
+                    <div class="form-group">
+                        <label for="institucion">Institución Educativa *</label>
+                        <input type="text" id="institucion" name="institucion" required placeholder="Nombre de tu colegio/escuela">
+                    </div>
+                    <div class="form-group">
+                        <label for="equipo">Nombre del Equipo *</label>
+                        <input type="text" id="equipo" name="equipo" required placeholder="Nombre de tu equipo">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="integrantes">Integrantes del Equipo (3-5) *</label>
+                        <textarea id="integrantes" name="integrantes" required rows="3" placeholder="Nombre - Edad - Correo (uno por línea)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="eje">Eje Temático Principal *</label>
+                        <select id="eje" name="eje" required>
+                            <option value="">Selecciona un eje</option>
+                            <option value="ODS">ODS - Objetivos de Desarrollo Sostenible</option>
+                            <option value="IA">Inteligencia Artificial</option>
+                            <option value="Blockchain">Blockchain</option>
+                            <option value="Combinado">Combinación de ejes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="demoweek">Finalista DemoWeek *</label>
+                        <select id="demoweek" name="demoweek" required>
+                            <option value="">¿Fuiste finalista?</option>
+                            <option value="DemoWeek 1 y 2">Sí, DemoWeek 1 y 2</option>
+                            <option value="Solo DemoWeek 1">Solo DemoWeek 1</option>
+                            <option value="Solo DemoWeek 2">Solo DemoWeek 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="idea">Breve descripción de tu idea de proyecto</label>
+                        <textarea id="idea" name="idea" rows="3" placeholder="Cuéntanos tu idea en unas pocas líneas..."></textarea>
+                    </div>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="btn-glow" id="submitBtn">
+                        <span id="btnText">¡Inscríbete Ahora! 🚀</span>
+                        <span id="btnLoader" style="display:none;">Registrando...</span>
+                    </button>
+                </div>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </section>
+
+
+
+    <!-- Mentores Section -->
+    <section class="section" id="mentores" style="background:linear-gradient(135deg, rgba(124,58,237,.08), rgba(245,158,11,.10)); position:relative; overflow:hidden;">
+        <div class="container">
+            <div style="background:linear-gradient(135deg, #111827 0%, #1f2937 100%); border:1px solid rgba(251,191,36,.25); border-radius:32px; padding:48px; box-shadow:0 30px 80px rgba(0,0,0,.35); margin-bottom:48px; position:relative; overflow:hidden;" class="reveal">
+                <div style="position:absolute; inset:0; background:radial-gradient(circle at top right, rgba(251,191,36,.18), transparent 35%), radial-gradient(circle at bottom left, rgba(124,58,237,.15), transparent 35%);"></div>
+                <div style="position:relative; z-index:2; display:grid; grid-template-columns:1.3fr .9fr; gap:32px; align-items:center;">
+                    <div>
+                        <div class="section-badge">Mentores Internos</div>
+                        <h2 style="margin-top:18px;">Convocatoria premium para mentores Eight Academy</h2>
+                        <p style="font-size:1.1rem; color:var(--text-secondary); line-height:1.9; margin-top:18px;">Invitamos al personal <strong>docente y administrativo</strong> de Eight Academy a convertirse en mentores internos de la Hackathon.</p>
+                        <p style="font-size:1.05rem; color:var(--text-secondary); line-height:1.9; margin-top:12px;">Podrán acceder a <strong>premios económicos</strong>, reconocimiento institucional, visibilidad y posicionamiento por su aporte estratégico.</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:24px; padding:28px; backdrop-filter:blur(16px);">
+                        <h3 style="margin-bottom:18px;">¿Quiénes pueden postular?</h3>
+                        <ul style="display:grid; gap:12px; color:var(--text-secondary); line-height:1.7;">
+                            <li>• Personal docente Eight Academy</li>
+                            <li>• Personal administrativo Eight Academy</li>
+                            <li>• Personas con actitud guía, criterio y vocación formativa</li>
+                            <li>• Profesionales dispuestos a elevar el nivel de los equipos</li>
+                        </ul>
+                        <div style="padding:18px; border-radius:18px; background:linear-gradient(135deg, rgba(251,191,36,.12), rgba(245,158,11,.08)); border:1px solid rgba(251,191,36,.18); margin-top:18px;">
+                            <img src="assets/mentores-real.png" alt="Convocatoria de mentores" style="width:100%; height:190px; object-fit:cover; border-radius:16px; margin-bottom:14px;"/>
+                            <div style="font-size:0.82rem; letter-spacing:.12em; text-transform:uppercase; color:#fcd34d; font-weight:800; margin-bottom:8px;">Banner promocional</div>
+                            <div style="font-size:1.2rem; font-weight:800; line-height:1.3;">Postúlate como mentor y conviértete en parte del corazón de la Hackathon.</div>
+                            <div style="margin-top:10px; color:var(--text-secondary);">Prestigio, impacto, visibilidad y premios por acompañar a la próxima generación.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header reveal">
+                <div class="reveal" style="margin:0 auto 28px; max-width:980px; border-radius:28px; padding:28px; background:linear-gradient(135deg, rgba(251,191,36,.18), rgba(168,85,247,.14), rgba(79,124,255,.14)); border:1px solid rgba(251,191,36,.22); box-shadow:0 24px 70px rgba(0,0,0,.24); position:relative; overflow:hidden;">
+                <div style="position:absolute; inset:0; background:radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 30%), radial-gradient(circle at bottom left, rgba(255,255,255,.10), transparent 30%);"></div>
+                <div style="position:relative; z-index:2; display:grid; grid-template-columns:1.2fr .8fr; gap:22px; align-items:center;">
+                    <div>
+                        <div style="font-size:.8rem; text-transform:uppercase; letter-spacing:.14em; color:#fde68a; font-weight:800;">Convocatoria de mentores</div>
+                        <div style="font-size:2rem; font-weight:900; line-height:1.15; margin-top:8px;">Inscripción abierta para mentores con impacto, prestigio y visibilidad WOW.</div>
+                        <div style="margin-top:12px; color:rgba(240,240,245,.82); line-height:1.8;">Una oportunidad para acompañar equipos, potenciar talento y convertir tu experiencia en una pieza central de la Hackathon.</div>
+                    </div>
+                    <div style="display:grid; gap:12px;">
+                        <div style="padding:14px 16px; border-radius:18px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);">💰 Premios económicos</div>
+                        <div style="padding:14px 16px; border-radius:18px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);">🌟 Reconocimiento institucional</div>
+                        <div style="padding:14px 16px; border-radius:18px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);">🚀 Posicionamiento y visibilidad</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-badge">Registro Mentores</div>
+                <h2>Súmate como mentor interno</h2>
+                <p>Ayuda a impulsar a la próxima generación de innovadores y obtén reconocimiento por tu impacto.</p>
+            </div>
+
+            <div class="reveal" style="margin:0 auto 28px; max-width:980px;">
+                <img src="assets/mentores-real.png" alt="Mentores de la Hackathon" style="width:100%; height:320px; object-fit:cover; border-radius:24px; border:1px solid rgba(255,255,255,.10); box-shadow:0 24px 70px rgba(0,0,0,.25);"/>
+            </div>
+
+            <div class="form-container reveal">
+                <form id="mentorForm" onsubmit="return handleMentorSubmit(event)">
+                    <div class="form-grid">
+                        <div class="form-group"><label for="mentor_nombre">Nombre completo *</label><input type="text" id="mentor_nombre" required></div>
+                        <div class="form-group"><label for="mentor_area">Área / cargo *</label><input type="text" id="mentor_area" required></div>
+                        <div class="form-group"><label for="mentor_email">Email *</label><input type="email" id="mentor_email" required></div>
+                        <div class="form-group"><label for="mentor_telefono">WhatsApp *</label><input type="tel" id="mentor_telefono" required></div>
+                        <div class="form-group full-width"><label for="mentor_expertise">Fortalezas / áreas en las que puedes mentorizar *</label><textarea id="mentor_expertise" required></textarea></div>
+                        <div class="form-group full-width"><label for="mentor_motivo">¿Por qué te gustaría ser mentor interno de este hackathon? *</label><textarea id="mentor_motivo" required></textarea></div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="mentorSubmitBtn"><span id="mentorBtnText">Postular como Mentor</span><span id="mentorBtnLoader" style="display:none">⏳ Enviando...</span></button>
+                    <div id="mentorFormMessage" class="form-message" style="display:none"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rubrica Section -->
+    <section class="section section-dark" id="rubrica">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-badge">Anexo</div>
+                <h2>Rúbrica oficial de calificación</h2>
+                <p>Una evaluación clara, exigente y alineada con el nivel premium de la Hackathon.</p>
+                <div style="margin-top:18px; padding:20px; border-radius:20px; background:linear-gradient(135deg, rgba(79,124,255,.12), rgba(168,85,247,.10)); border:1px solid rgba(79,124,255,.18); color:var(--text-secondary); line-height:1.8;">
+                    Para la presentación de proyectos se debe crear un repositorio en GitHub con el nombre del proyecto y ahí se deben agregar todos los archivos correspondientes: <strong>whitepaper</strong>, <strong>presentaciones</strong>, <strong>pitch final</strong>, <strong>investigaciones de mercado</strong>, <strong>infografías</strong>, <strong>código fuente</strong> y cualquier archivo relacionado al proyecto.
+                </div>
+            </div>
+            <div class="requirements-grid">
+                    <div class="requirement-card reveal">
+                        <div class="requirement-icon">🏁</div>
+                        <h3>Haber sido finalista Demo Week 1</h3>
+                        <p>Solo podrán continuar quienes alcanzaron condición de finalistas en Demo Week 1.</p>
+                    </div>
+                    <div class="requirement-card reveal">
+                        <div class="requirement-icon">✅</div>
+                        <h3>Ser seleccionado en Demo Week 2</h3>
+                        <p>La participación oficial en el hackathon requiere selección formal en Demo Week 2.</p>
+                    </div>
+                    <div class="requirement-card reveal">
+                        <div class="requirement-icon">🎓</div>
+                        <h3>Estudiantes entre 8 y 18 años</h3>
+                        <p>La convocatoria está dirigida a estudiantes Eight Academy dentro de este rango de edad.</p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Hackathon Eight Academy. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 8 + 's';
+            p.style.animationDuration = (6 + Math.random() * 6) + 's';
+            const colors = ['#4f7cff', '#00e5ff', '#a855f7', '#10b981'];
+            p.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particlesContainer.appendChild(p);
+        }
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 8-18);
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // ====== CONFIGURACIÓN FIREBASE ======
+        // TODO: Reemplaza estos valores con los de tu proyecto Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDVP4Gg-nQ_0vZNhII-LjHMpDT4mH8_PZw",
+            authDomain: "vibramente-ce5b8.firebaseapp.com",
+            projectId: "vibramente-ce5b8",
+            storageBucket: "vibramente-ce5b8.firebasestorage.app",
+            messagingSenderId: "520406145835",
+            appId: "1:520406145835:web:bf748898aa53092ca5c36e"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Hacer disponible globalmente
+        window.firebaseDB = db;
+        window.firebaseCollection = collection;
+        window.firebaseAddDoc = addDoc;
+        window.firebaseServerTimestamp = serverTimestamp;
+    </script>
+
+    <script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            const msg = document.getElementById('formMessage');
+            
+            // UI loading
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline';
+            msg.style.display = 'none';
+            msg.className = 'form-message';
+
+            const formData = {
+                nombre: document.getElementById('nombre').value.trim(),
+                edad: parseInt(document.getElementById('edad').value),
+                email: document.getElementById('email').value.trim(),
+                telefono: document.getElementById('telefono').value.trim(),
+                institucion: document.getElementById('institucion').value.trim(),
+                equipo: document.getElementById('equipo').value.trim(),
+                integrantes: document.getElementById('integrantes').value.trim(),
+                eje: document.getElementById('eje').value,
+                demoweek: document.getElementById('demoweek').value,
+                idea: document.getElementById('idea').value.trim(),
+                fechaRegistro: window.firebaseServerTimestamp ? window.firebaseServerTimestamp() : new Date().toISOString()
+            };
+
+            try {
+                if (!window.firebaseDB) {
+                    throw new Error('Firebase no configurado. Contacta al administrador.');
+                }
+
+                const docRef = await window.firebaseAddDoc(
+                    window.firebaseCollection(window.firebaseDB, 'hackathon_registros'),
+                    {...formData, tipo: 'equipo_hackathon', fechaHackathon: '2026-05-14'}
+                );
+
+                msg.textContent = '🎉 ¡Registro exitoso! Te contactaremos pronto. ID: ' + docRef.id;
+                msg.className = 'form-message success';
+                document.getElementById('registroForm').reset();
+
+            } catch (error) {
+                console.error('Error:', error);
+                msg.textContent = '❌ Error al registrar: ' + error.message;
+                msg.className = 'form-message error';
+            } finally {
+                btn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoader.style.display = 'none';
+            }
+
+            return false;
+        }
+
+        async function handleMentorSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('mentorSubmitBtn');
+            const btnText = document.getElementById('mentorBtnText');
+            const btnLoader = document.getElementById('mentorBtnLoader');
+            const msg = document.getElementById('mentorFormMessage');
+            btn.disabled = true; btnText.style.display = 'none'; btnLoader.style.display = 'inline'; msg.style.display = 'none'; msg.className = 'form-message';
+            const formData = {
+                nombre: document.getElementById('mentor_nombre').value.trim(),
+                areaCargo: document.getElementById('mentor_area').value.trim(),
+                email: document.getElementById('mentor_email').value.trim(),
+                telefono: document.getElementById('mentor_telefono').value.trim(),
+                expertise: document.getElementById('mentor_expertise').value.trim(),
+                motivo: document.getElementById('mentor_motivo').value.trim(),
+                tipo: 'mentor_interno',
+                fechaRegistro: window.firebaseServerTimestamp ? window.firebaseServerTimestamp() : new Date().toISOString()
+            };
+            try {
+                if (!window.firebaseDB) throw new Error('Firebase no configurado.');
+                const docRef = await window.firebaseAddDoc(window.firebaseCollection(window.firebaseDB, 'hackathon_mentores'), formData);
+                msg.textContent = '🌟 ¡Postulación enviada con éxito! ID: ' + docRef.id;
+                msg.className = 'form-message success';
+                document.getElementById('mentorForm').reset();
+            } catch (error) {
+                console.error('Error mentor:', error);
+                msg.textContent = '❌ Error al enviar tu postulación: ' + error.message;
+                msg.className = 'form-message error';
+            } finally {
+                btn.disabled = false; btnText.style.display = 'inline'; btnLoader.style.display = 'none'; msg.style.display = 'block';
+            }
+            return false;
+        }
+
+    </script>
+</body>
+</html>
