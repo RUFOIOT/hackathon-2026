@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Whitepaper Template · Hackathon Eight Academy 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ══ SCREEN STYLES ══ */
+:root{
+  --red:#E30613;--dark:#06060A;--card:#0E0E18;--border:#1C1C2A;
+  --tx:#E0E0EE;--mu:#5A5A72;--wh:#fff;
+  --accent:#6366F1;--green:#10B981;--yellow:#F59E0B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--tx);font-family:'Inter',sans-serif;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+#bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--red),var(--accent),var(--green));z-index:9999;pointer-events:none;width:0}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:.7rem 3rem;background:rgba(6,6,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nlogo{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:800;color:rgba(255,255,255,.3)}.nlogo b{color:var(--red)}
+.nav-actions{display:flex;gap:.6rem;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;border-radius:20px;font-size:.65rem;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;border:none}
+.btn-print{background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.3)}
+.btn-print:hover{background:rgba(99,102,241,.28)}
+.btn-dl{background:rgba(16,185,129,.12);color:#6ee7b7;border:1px solid rgba(16,185,129,.25)}
+.btn-dl:hover{background:rgba(16,185,129,.25)}
+.nav-pills{display:flex;gap:.15rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:25px;padding:.18rem}
+.np{padding:.25rem .75rem;border-radius:20px;font-size:.6rem;font-weight:700;color:var(--mu);text-decoration:none;transition:all .2s}
+.np:hover,.np.on{background:rgba(227,6,19,.15);color:#ff7a7a}
+
+/* HERO / INTRO */
+.page-intro{padding:7.5rem 4rem 3rem;max-width:1000px;margin:0 auto;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);border-radius:25px;padding:.3rem 1rem;font-size:.58rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1.5rem}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:bl 1.4s infinite;flex-shrink:0}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.15}}
+.page-intro h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;line-height:.92;letter-spacing:-2.5px;margin-bottom:1rem;background:linear-gradient(135deg,var(--wh),rgba(255,255,255,.55));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.page-intro p{font-size:.95rem;color:var(--mu);max-width:580px;margin:0 auto 2rem}
+.replace-note{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);border-radius:12px;padding:.65rem 1.1rem;font-size:.78rem;color:#fcd34d;margin-bottom:2.5rem}
+
+/* DOCUMENT WRAPPER */
+.doc-wrapper{max-width:860px;margin:0 auto;padding:0 2rem 6rem}
+
+/* ══ WHITEPAPER DOCUMENT STYLES ══ */
+.wp{background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden}
+
+/* COVER */
+.wp-cover{padding:4rem;background:linear-gradient(135deg,#06060A 0%,#0D0D1A 40%,#06060A);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.wp-cover::before{content:'';position:absolute;top:-60px;right:-60px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.12),transparent 70%)}
+.wp-cover::after{content:'';position:absolute;bottom:-40px;left:-40px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.08),transparent 70%)}
+.cover-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:3rem;position:relative;z-index:1}
+.cover-badge-left{display:flex;align-items:center;gap:.65rem}
+.hackathon-logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--red),#ff6b35);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;color:#fff;flex-shrink:0}
+.hackathon-name{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.45);line-height:1.4}
+.hackathon-name strong{color:rgba(255,255,255,.7);display:block;font-size:.8rem}
+.cover-status{display:flex;align-items:center;gap:.3rem;font-size:.58rem;font-weight:700;padding:.22rem .7rem;border-radius:20px;background:rgba(245,158,11,.1);color:#fcd34d;border:1px solid rgba(245,158,11,.22)}
+.cover-version{font-size:.58rem;font-weight:700;color:var(--mu);margin-top:.25rem;text-align:right}
+
+.cover-main{position:relative;z-index:1}
+.cover-type{font-size:.6rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.85rem}
+.cover-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900;letter-spacing:-2px;line-height:.92;color:var(--wh);margin-bottom:.75rem}
+.cover-title span{display:block;background:linear-gradient(135deg,var(--red),#ff6b35,var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cover-tagline{font-size:1.05rem;color:rgba(255,255,255,.38);font-family:'Lora',serif;font-style:italic;margin-bottom:2.5rem;max-width:520px}
+
+.cover-team{display:flex;gap:1rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.team-pill{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:25px;padding:.4rem .85rem}
+.team-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.65rem;color:#fff;flex-shrink:0}
+.team-info .tn{font-size:.72rem;font-weight:700;color:var(--wh);line-height:1.2}
+.team-info .tr{font-size:.58rem;color:var(--mu)}
+
+.cover-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.5rem}
+.chip{display:inline-flex;align-items:center;gap:.3rem;font-size:.58rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:.22rem .75rem;border-radius:20px}
+.cr{background:rgba(227,6,19,.1);color:#ff7a7a;border:1px solid rgba(227,6,19,.2)}
+.cg{background:rgba(16,185,129,.08);color:#6ee7b7;border:1px solid rgba(16,185,129,.18)}
+.cb{background:rgba(99,102,241,.1);color:#a5b4fc;border:1px solid rgba(99,102,241,.2)}
+.cy{background:rgba(245,158,11,.08);color:#fcd34d;border:1px solid rgba(245,158,11,.18)}
+
+.cover-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:1.5rem 0}
+.ck{text-align:center;border-right:1px solid rgba(255,255,255,.06)}
+.ck:last-child{border-right:none}
+.ck .cv{font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:900;background:linear-gradient(135deg,var(--wh),rgba(255,255,255,.5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.ck .cl{font-size:.55rem;color:var(--mu);text-transform:uppercase;letter-spacing:1.5px;margin-top:.3rem}
+
+.cover-date{font-size:.68rem;color:var(--mu);margin-top:1.5rem}
+
+/* SECTION STYLES */
+.wp-section{padding:2.75rem 4rem;border-bottom:1px solid var(--border)}
+.wp-section:last-child{border-bottom:none}
+
+.sec-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.75rem}
+.sec-num{font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:900;line-height:1;opacity:.08;flex-shrink:0;min-width:60px}
+.sec-meta{flex:1}
+.sec-label{font-size:.55rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:.35rem}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:900;color:var(--wh);letter-spacing:-.5px;line-height:1.1}
+
+/* CONTENT ELEMENTS */
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:1.1rem}
+.body-text strong{color:var(--tx)}
+.body-text em{font-family:'Lora',serif;color:rgba(255,255,255,.45)}
+
+.highlight-box{background:rgba(255,255,255,.025);border-left:3px solid var(--red);border-radius:0 12px 12px 0;padding:1rem 1.25rem;margin:1.1rem 0}
+.highlight-box.green{border-left-color:var(--green);background:rgba(16,185,129,.04)}
+.highlight-box.yellow{border-left-color:var(--yellow);background:rgba(245,158,11,.04)}
+.highlight-box.accent{border-left-color:var(--accent);background:rgba(99,102,241,.04)}
+.hb-text{font-size:.85rem;color:var(--tx);line-height:1.75}
+.hb-text strong{color:var(--wh)}
+
+/* STAT ROW */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.25rem 0}
+.sr{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.1rem;text-align:center}
+.sr .sv{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:900;line-height:1}
+.sr .sl{font-size:.6rem;color:var(--mu);text-transform:uppercase;letter-spacing:1.5px;margin-top:.3rem}
+.sr .sd{font-size:.72rem;color:var(--mu);margin-top:.3rem;line-height:1.45}
+
+/* FLOW */
+.flow{display:flex;align-items:center;gap:0;margin:1.25rem 0;overflow-x:auto;padding-bottom:.5rem}
+.flow-step{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1rem 1.1rem;text-align:center;min-width:140px;flex-shrink:0}
+.fs-ico{font-size:1.4rem;margin-bottom:.4rem}
+.fs-num{font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:.2rem}
+.fs-label{font-size:.75rem;font-weight:700;color:var(--wh);line-height:1.35}
+.fs-desc{font-size:.65rem;color:var(--mu);margin-top:.25rem;line-height:1.45}
+.flow-arrow{font-size:1.2rem;color:rgba(255,255,255,.12);flex-shrink:0;padding:0 .3rem}
+
+/* TECH STACK */
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin:1.1rem 0}
+.tg{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:.9rem 1rem}
+.tg-layer{font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:.35rem}
+.tg-name{font-size:.85rem;font-weight:700;color:var(--wh);margin-bottom:.2rem}
+.tg-why{font-size:.72rem;color:var(--mu);line-height:1.55}
+
+/* ODS */
+.ods-box{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.14);border-radius:16px;padding:1.5rem;margin:1.1rem 0}
+.ods-num{font-family:'Space Grotesk',sans-serif;font-size:4rem;font-weight:900;background:linear-gradient(135deg,var(--green),#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;flex-shrink:0}
+.ods-title{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:.35rem}
+.ods-name{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:900;color:var(--wh);margin-bottom:.5rem}
+.ods-metrics{display:flex;flex-direction:column;gap:.3rem}
+.ods-m{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--tx)}
+.ods-m::before{content:'→';color:var(--green);font-weight:700;flex-shrink:0}
+
+/* COMPETITORS */
+.comp-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:1rem 0}
+.comp-table th{padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(255,255,255,.07);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mu)}
+.comp-table td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;line-height:1.55}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tr:hover td{background:rgba(255,255,255,.015)}
+.tc-name{font-weight:700;color:var(--tx)}
+.tc-bad{color:rgba(239,68,68,.8);font-size:.78rem}
+.tc-good{color:var(--green);font-weight:700}
+
+/* TIMELINE */
+.roadmap{display:flex;flex-direction:column;gap:.65rem;margin:1.1rem 0}
+.rm{display:flex;align-items:flex-start;gap:.85rem;padding:.75rem 1rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px}
+.rm-phase{font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:.2rem .65rem;border-radius:20px;flex-shrink:0;white-space:nowrap}
+.rmp-1{background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.25)}
+.rmp-2{background:rgba(16,185,129,.12);color:#6ee7b7;border:1px solid rgba(16,185,129,.22)}
+.rmp-3{background:rgba(245,158,11,.12);color:#fcd34d;border:1px solid rgba(245,158,11,.22)}
+.rm-content{flex:1}
+.rm-title{font-size:.82rem;font-weight:700;color:var(--wh);margin-bottom:.2rem}
+.rm-desc{font-size:.75rem;color:var(--mu);line-height:1.55}
+
+/* EDITABLE FIELDS */
+.editable{background:rgba(245,158,11,.06);border:1px dashed rgba(245,158,11,.3);border-radius:6px;padding:.1rem .35rem;color:#fcd34d;font-style:italic;font-size:inherit;cursor:text;outline:none;display:inline;min-width:20px}
+.editable:focus{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.55)}
+.editable:empty::before{content:attr(data-placeholder);color:rgba(245,197,24,.4)}
+
+/* REPLACE LABELS */
+.replace-tag{display:inline-block;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.22);color:#fcd34d;font-size:.58rem;font-weight:700;letter-spacing:1px;padding:.1rem .45rem;border-radius:5px;text-transform:uppercase;margin:0 .15rem;vertical-align:middle;cursor:default;font-family:'Inter',sans-serif}
+
+/* LEGEND BAR */
+.legend{display:flex;align-items:center;gap:1.5rem;padding:.85rem 1.25rem;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.15);border-radius:12px;margin-bottom:2rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--mu)}
+
+/* PRINT */
+@media print{
+  body{background:#fff;color:#111}
+  nav,#bar,.page-intro,.legend,.replace-note,.btn{display:none!important}
+  .doc-wrapper{padding:0;max-width:100%}
+  .wp{background:#fff;border:none;border-radius:0;box-shadow:none}
+  .wp-cover{background:#f8f8fc;border-bottom:2px solid #e0e0e8}
+  .wp-section{padding:1.8rem 2.5rem;border-bottom:1px solid #e8e8f0;break-inside:avoid}
+  .cover-title,.sec-title,.ck .cv,.sr .sv,.ods-num{-webkit-text-fill-color:initial;background:none}
+  .cover-title{color:#111}
+  .cover-title span{color:var(--red)}
+  .sec-title{color:#111}
+  .ck .cv{color:#111}
+  .sr .sv{color:#111}
+  .ods-num{color:#10B981}
+  .body-text{color:#444}
+  .sec-num{color:#ddd;opacity:1}
+  .sec-label{color:#888}
+  .wp-cover::before,.wp-cover::after{display:none}
+  .team-pill{background:#f0f0f8;border-color:#ddd}
+  .team-info .tn{color:#111}
+  .stat-row .sr,.tg,.rm,.flow-step{background:#f8f8fc;border-color:#e0e0e8}
+  .fs-label,.tg-name,.rm-title,.tc-name{color:#111}
+  .ods-box{background:#f0fff8;border-color:#10B981}
+  .highlight-box{background:#f8f8fc}
+  .editable{background:none;border:none;color:#111;font-style:normal}
+  .replace-tag{background:#fff3cd;border-color:#ffc107;color:#856404}
+  .comp-table th{color:#666}
+  .hackathon-logo{background:var(--red)}
+  .hackathon-name,.hackathon-name strong{color:#333}
+  .cover-tagline{color:#666}
+  .cover-chips .chip{background:#f0f0f8;border-color:#ddd;color:#444}
+  .cover-date{color:#888}
+  .hb-text{color:#333}.hb-text strong{color:#111}
+  .ods-title{color:#10B981}.ods-m{color:#333}
+  .rm-desc{color:#666}
+  .tg-layer{color:#888}.tg-why{color:#666}
+  .fs-desc,.fs-num{color:#888}
+  .flow-arrow{color:#ccc}
+  @page{margin:1.5cm;size:A4}
+}
+
+@media(max-width:760px){
+  nav{padding:.65rem 1rem}.nav-pills,.nav-actions{display:none}
+  .page-intro,.doc-wrapper{padding-left:1rem;padding-right:1rem}
+  .wp-cover,.wp-section{padding:2rem 1.5rem}
+  .cover-meta{flex-direction:column;gap:.75rem;align-items:flex-start}
+  .cover-kpis{grid-template-columns:1fr 1fr}
+  .stat-row,.tech-grid{grid-template-columns:1fr}
+  .ods-box{grid-template-columns:1fr}
+  .flow{flex-direction:column}.flow-arrow{transform:rotate(90deg)}
+  .comp-table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<nav>
+  <div class="nlogo"><b>EIGHT ACADEMY</b> · Hackathon 2026</div>
+  <div class="nav-pills">
+    <a class="np" href="#s1">Resumen</a>
+    <a class="np" href="#s2">Problema</a>
+    <a class="np" href="#s3">Solución</a>
+    <a class="np" href="#s4">Tecnología</a>
+    <a class="np" href="#s5">ODS</a>
+    <a class="np" href="#s7">Mercado</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
+    <a class="btn btn-dl" href="how-to.html">← Volver al How To</a>
+  </div>
+</nav>
+
+<!-- INTRO -->
+<div class="page-intro">
+  <div class="badge"><div class="dot"></div>Hackathon Eight Academy 2026 · Modelo de Whitepaper</div>
+  <h1>Whitepaper<br/>Ejemplo</h1>
+  <p>Un modelo real y completo para que copies la estructura, reemplaces el contenido y tengas tu whitepaper listo. Todo lo que aparece en <span style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:#fcd34d;padding:.08rem .4rem;border-radius:5px;font-size:.85rem">amarillo</span> es lo que debes reemplazar con tu información.</p>
+
+  <div class="replace-note">
+    ⚠️ Los campos marcados en amarillo son del proyecto ejemplo "MediAlert" — reemplázalos con tu proyecto
+  </div>
+</div>
+
+<!-- DOCUMENT -->
+<div class="doc-wrapper">
+
+  <div class="legend">
+    <div class="legend-item"><span style="display:inline-block;width:14px;height:14px;background:rgba(245,158,11,.15);border:1px dashed rgba(245,158,11,.5);border-radius:3px"></span>Campo a reemplazar con tu info</div>
+    <div class="legend-item"><span style="display:inline-block;width:14px;height:14px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);border-radius:3px"></span>Estructura fija — mantén el formato</div>
+    <div class="legend-item"><span style="font-size:.85rem">🖨️</span>Usa el botón "Imprimir / PDF" para exportar limpio</div>
+  </div>
+
+<div class="wp">
+
+<!-- ══ PORTADA ══ -->
+<div class="wp-cover">
+  <div class="cover-meta">
+    <div class="cover-badge-left">
+      <div class="hackathon-logo">8A</div>
+      <div class="hackathon-name"><strong>Eight Academy</strong>Hackathon 2026 · Confidencial</div>
+    </div>
+    <div>
+      <div class="cover-status">📌 Whitepaper v1.0</div>
+      <div class="cover-version">Versión 1.0 · Junio 2026</div>
+    </div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-type">Proyecto de Innovación · IA + Impacto Social</div>
+    <h1 class="cover-title">
+      <span><span class="replace-tag">TU PROYECTO</span> <span class="editable" contenteditable="true" data-placeholder="MediAlert">MediAlert</span></span>
+      <span style="color:rgba(255,255,255,.35);font-size:.45em;display:block;margin-top:.35rem;letter-spacing:0;font-family:'Inter',sans-serif;font-weight:600"><span class="editable" contenteditable="true" data-placeholder="Tu tagline aquí">IA que previene crisis diabéticas antes de que ocurran</span></span>
+    </h1>
+    <p class="cover-tagline"><span class="editable" contenteditable="true" data-placeholder="Una descripción de 1-2 oraciones de tu proyecto">"Conectamos a pacientes diabéticos mayores con sus médicos a través de un chatbot de WhatsApp que usa inteligencia artificial para detectar riesgos antes de que sean emergencias."</span></p>
+
+    <div class="cover-team">
+      <div class="team-pill"><div class="team-av" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)">A</div><div class="team-info"><div class="tn"><span class="editable" contenteditable="true" data-placeholder="Nombre 1">Ana Salazar</span></div><div class="tr">Tech Lead</div></div></div>
+      <div class="team-pill"><div class="team-av" style="background:linear-gradient(135deg,#10B981,#34D399)">D</div><div class="team-info"><div class="tn"><span class="editable" contenteditable="true" data-placeholder="Nombre 2">Diego Vásquez</span></div><div class="tr">Design Lead</div></div></div>
+      <div class="team-pill"><div class="team-av" style="background:linear-gradient(135deg,#F59E0B,#FCD34D)">S</div><div class="team-info"><div class="tn"><span class="editable" contenteditable="true" data-placeholder="Nombre 3">Sofía Mendoza</span></div><div class="tr">Business Lead</div></div></div>
+      <div class="team-pill"><div class="team-av" style="background:linear-gradient(135deg,#EF4444,#F97316)">L</div><div class="team-info"><div class="tn"><span class="editable" contenteditable="true" data-placeholder="Nombre 4">Luis Torres</span></div><div class="tr">Presenter</div></div></div>
+    </div>
+
+    <div class="cover-chips">
+      <span class="chip cr">🤖 Inteligencia Artificial</span>
+      <span class="chip cg">🌍 ODS 3 — Salud</span>
+      <span class="chip cb">📱 WhatsApp + Claude API</span>
+      <span class="chip cy"><span class="editable" contenteditable="true" data-placeholder="Ciudad, País">Quito, Ecuador</span></span>
+    </div>
+
+    <div class="cover-kpis">
+      <div class="ck"><div class="cv"><span class="editable" contenteditable="true" data-placeholder="400K">400K</span></div><div class="cl">diabéticos Ecuador</div></div>
+      <div class="ck"><div class="cv"><span class="editable" contenteditable="true" data-placeholder="68%">68%</span></div><div class="cl">sin monitoreo regular</div></div>
+      <div class="ck"><div class="cv"><span class="editable" contenteditable="true" data-placeholder="$47M">$47M</span></div><div class="cl">costo anual MSP</div></div>
+      <div class="ck"><div class="cv"><span class="editable" contenteditable="true" data-placeholder="30%">30%</span></div><div class="cl">reducción crisis est.</div></div>
+    </div>
+
+    <div class="cover-date">Eight Academy · Hackathon 2026 · <span class="editable" contenteditable="true" data-placeholder="Mes y año">Mayo – Junio 2026</span> · Confidencial</div>
+  </div>
+</div>
+
+<!-- ══ 1. RESUMEN EJECUTIVO ══ -->
+<div class="wp-section" id="s1">
+  <div class="sec-header">
+    <div class="sec-num">01</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--red)">Sección 1</div>
+      <div class="sec-title">Resumen Ejecutivo</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> Escribe 3-4 oraciones que cuenten todo. Alguien que lea solo esto debe entender: el problema, tu solución, la tecnología y el impacto. Máximo 150 palabras.
+    </div>
+  </div>
+
+  <p class="body-text">
+    En Ecuador, más de <span class="replace-tag">DATO</span> <span class="editable" contenteditable="true" data-placeholder="400.000 personas diagnosticadas con diabetes tipo 2">400.000 personas diagnosticadas con diabetes tipo 2</span> no monitorean su glucosa regularmente debido al alto costo de los dispositivos y la complejidad de su uso. Esta falta de seguimiento genera <span class="editable" contenteditable="true" data-placeholder="$47 millones anuales en hospitalizaciones evitables">$47 millones anuales en hospitalizaciones evitables</span>, según datos del Ministerio de Salud Pública del Ecuador (MSP, 2023).
+  </p>
+
+  <p class="body-text">
+    <strong>MediAlert</strong> <span class="replace-tag">TU SOLUCIÓN</span> es un <span class="editable" contenteditable="true" data-placeholder="chatbot de WhatsApp impulsado por inteligencia artificial">chatbot de WhatsApp impulsado por inteligencia artificial</span> que permite a pacientes diabéticos registrar sus niveles de glucosa diariamente en lenguaje natural, recibir alertas personalizadas y conectar a sus médicos tratantes con información en tiempo real. La solución usa la API de Claude para comprensión del lenguaje y un modelo predictivo para detección temprana de crisis hiperglucémicas.
+  </p>
+
+  <p class="body-text">
+    El proyecto impacta directamente el <strong>ODS 3 — Salud y Bienestar</strong> con una proyección de reducción del <span class="editable" contenteditable="true" data-placeholder="30%">30%</span> en hospitalizaciones de emergencia por crisis glucémicas en usuarios activos durante el primer año de operación.
+  </p>
+</div>
+
+<!-- ══ 2. EL PROBLEMA ══ -->
+<div class="wp-section" id="s2">
+  <div class="sec-header">
+    <div class="sec-num">02</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--accent)">Sección 2</div>
+      <div class="sec-title">El Problema</div>
+    </div>
+  </div>
+
+  <div class="highlight-box accent">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> Describe el problema con datos reales. Incluye al menos 3 estadísticas citadas. Explica a quién afecta y por qué las soluciones actuales no son suficientes. 250-350 palabras.
+    </div>
+  </div>
+
+  <p class="body-text">
+    La diabetes tipo 2 afecta a <span class="editable" contenteditable="true" data-placeholder="aproximadamente 400.000 ecuatorianos">aproximadamente 400.000 ecuatorianos</span>, con una prevalencia que ha crecido el <span class="editable" contenteditable="true" data-placeholder="23%">23%</span> en la última década (INEC, 2022). Sin embargo, el problema no es el diagnóstico — es el seguimiento. <strong>El 68% de los pacientes diagnosticados no monitorea su glucosa con la frecuencia recomendada</strong> por sus médicos (MSP Ecuador, 2023).
+  </p>
+
+  <div class="stat-row">
+    <div class="sr">
+      <div class="sv" style="background:linear-gradient(135deg,var(--wh),#fca5a5);-webkit-background-clip:text;-webkit-text-fill-color:transparent"><span class="editable" contenteditable="true" data-placeholder="68%">68%</span></div>
+      <div class="sl">Sin monitoreo regular</div>
+      <div class="sd"><span class="editable" contenteditable="true" data-placeholder="de pacientes diabéticos no mide su glucosa con la frecuencia recomendada. Fuente: MSP 2023">de pacientes diabéticos no mide su glucosa con la frecuencia recomendada. Fuente: MSP 2023</span></div>
+    </div>
+    <div class="sr">
+      <div class="sv" style="background:linear-gradient(135deg,var(--wh),#fcd34d);-webkit-background-clip:text;-webkit-text-fill-color:transparent"><span class="editable" contenteditable="true" data-placeholder="$47M">$47M</span></div>
+      <div class="sl">Costo anual evitable</div>
+      <div class="sd"><span class="editable" contenteditable="true" data-placeholder="en hospitalizaciones de emergencia por crisis diabéticas. Fuente: MSP 2023">en hospitalizaciones de emergencia por crisis diabéticas. Fuente: MSP 2023</span></div>
+    </div>
+    <div class="sr">
+      <div class="sv" style="background:linear-gradient(135deg,var(--wh),#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent"><span class="editable" contenteditable="true" data-placeholder="3x">3x</span></div>
+      <div class="sl">Mayor riesgo</div>
+      <div class="sd"><span class="editable" contenteditable="true" data-placeholder="de hospitalización en pacientes sin monitoreo vs. pacientes con seguimiento activo. OPS 2022">de hospitalización en pacientes sin monitoreo vs. con seguimiento activo. OPS 2022</span></div>
+    </div>
+  </div>
+
+  <p class="body-text">
+    Las razones principales por las que los pacientes no monitorean son: <strong>(1)</strong> El costo de los glucómetros digitales oscila entre <span class="editable" contenteditable="true" data-placeholder="$80 y $300">$80 y $300</span>, inaccesible para la mayoría. <strong>(2)</strong> Los dispositivos existentes requieren conectividad y conocimientos técnicos. <strong>(3)</strong> No existe un canal de comunicación automático entre el paciente y su médico para alertas tempranas.
+  </p>
+
+  <p class="body-text">
+    Las soluciones actuales como <em>MySugr</em>, <em>Dario Health</em> y glucómetros inteligentes requieren hardware adicional, suscripciones en dólares y un nivel de alfabetización digital que <strong>el segmento más vulnerable — adultos mayores de bajos ingresos — no tiene</strong>. El problema no es técnico: es de accesibilidad y fricción de uso.
+  </p>
+
+  <div class="highlight-box">
+    <div class="hb-text"><strong>El dolor real:</strong> <span class="editable" contenteditable="true" data-placeholder="Rosa tiene 67 años, vive en Ibarra y fue diagnosticada con diabetes hace 3 años. Su médico le recetó medirse la glucosa cada mañana. Rosa no lo hace porque el glucómetro le da miedo, no entiende los números y no sabe cuándo llamar al doctor. Hasta que termina en urgencias.">Rosa tiene 67 años, vive en Ibarra y fue diagnosticada con diabetes hace 3 años. Su médico le recetó medirse la glucosa cada mañana. Rosa no lo hace porque el glucómetro le da miedo, no entiende los números y no sabe cuándo llamar al doctor. Hasta que termina en urgencias.</span></div>
+  </div>
+</div>
+
+<!-- ══ 3. NUESTRA SOLUCIÓN ══ -->
+<div class="wp-section" id="s3">
+  <div class="sec-header">
+    <div class="sec-num">03</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--green)">Sección 3</div>
+      <div class="sec-title">Nuestra Solución</div>
+    </div>
+  </div>
+
+  <div class="highlight-box green">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> Describe QUÉ hace tu solución exactamente, PARA QUIÉN y CÓMO funciona el flujo del usuario. Incluye el diagrama de pasos. 300-400 palabras.
+    </div>
+  </div>
+
+  <p class="body-text">
+    <strong>MediAlert</strong> <span class="replace-tag">NOMBRE DE TU APP</span> es un <span class="editable" contenteditable="true" data-placeholder="chatbot conversacional en WhatsApp">chatbot conversacional en WhatsApp</span> que actúa como asistente de salud personal para pacientes diabéticos. El usuario no necesita descargar ninguna aplicación ni comprar hardware — solo necesita WhatsApp, que ya tiene instalado.
+  </p>
+
+  <p class="body-text">
+    El flujo de uso es completamente natural: el paciente escribe o graba un mensaje de voz con su nivel de glucosa del día. La IA interpreta el mensaje, lo registra, genera una evaluación personalizada y alerta al médico si detecta un patrón de riesgo. <strong>Cero formularios. Cero tecnicismos. Cero barreras.</strong>
+  </p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="fs-ico">💬</div>
+      <div class="fs-num">Paso 1</div>
+      <div class="fs-label"><span class="editable" contenteditable="true" data-placeholder="Paciente envía mensaje">Paciente envía mensaje</span></div>
+      <div class="fs-desc"><span class="editable" contenteditable="true" data-placeholder="Texto o voice note en WhatsApp con su glucosa del día">Texto o voice note en WhatsApp con su glucosa del día</span></div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="fs-ico">🧠</div>
+      <div class="fs-num">Paso 2</div>
+      <div class="fs-label"><span class="editable" contenteditable="true" data-placeholder="IA analiza el mensaje">IA analiza el mensaje</span></div>
+      <div class="fs-desc"><span class="editable" contenteditable="true" data-placeholder="Claude API extrae el valor, hora y contexto del paciente">Claude API extrae el valor, hora y contexto del paciente</span></div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="fs-ico">📊</div>
+      <div class="fs-num">Paso 3</div>
+      <div class="fs-label"><span class="editable" contenteditable="true" data-placeholder="Evaluación de riesgo">Evaluación de riesgo</span></div>
+      <div class="fs-desc"><span class="editable" contenteditable="true" data-placeholder="Modelo predictivo clasifica nivel de riesgo: normal, atención, urgente">Modelo predice nivel de riesgo: normal / atención / urgente</span></div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="fs-ico">💊</div>
+      <div class="fs-num">Paso 4</div>
+      <div class="fs-label"><span class="editable" contenteditable="true" data-placeholder="Respuesta al paciente">Respuesta al paciente</span></div>
+      <div class="fs-desc"><span class="editable" contenteditable="true" data-placeholder="Mensaje personalizado con recomendación y feedback positivo">Mensaje personalizado con recomendación y feedback</span></div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="fs-ico">👨‍⚕️</div>
+      <div class="fs-num">Paso 5</div>
+      <div class="fs-label"><span class="editable" contenteditable="true" data-placeholder="Alerta al médico">Alerta al médico</span></div>
+      <div class="fs-desc"><span class="editable" contenteditable="true" data-placeholder="Si hay riesgo, el médico recibe alerta inmediata con historial">Si hay riesgo, el médico recibe alerta con historial del paciente</span></div>
+    </div>
+  </div>
+
+  <p class="body-text">
+    La propuesta de valor central es la <strong>eliminación total de la fricción</strong>: donde antes el paciente necesitaba un dispositivo caro, una app descargada y conocimientos técnicos, ahora solo necesita escribir en el chat que ya usa todos los días. La adherencia al monitoreo pasa de <span class="editable" contenteditable="true" data-placeholder="32% a más del 78%">32% a más del 78%</span> en usuarios activos del prototipo (dato del piloto con 12 usuarios, mayo 2026).
+  </p>
+</div>
+
+<!-- ══ 4. TECNOLOGÍA ══ -->
+<div class="wp-section" id="s4">
+  <div class="sec-header">
+    <div class="sec-num">04</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--accent)">Sección 4</div>
+      <div class="sec-title">Arquitectura Tecnológica</div>
+    </div>
+  </div>
+
+  <div class="highlight-box accent">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> Explica el stack técnico y por qué elegiste cada herramienta. Usa lenguaje claro — el jurado puede no ser técnico. Incluye qué hace la IA específicamente. 250-300 palabras.
+    </div>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tg">
+      <div class="tg-layer">Canal de usuario</div>
+      <div class="tg-name">🟢 <span class="editable" contenteditable="true" data-placeholder="WhatsApp Business API">WhatsApp Business API</span></div>
+      <div class="tg-why"><span class="editable" contenteditable="true" data-placeholder="Canal elegido porque el 94% de adultos mayores en Ecuador ya tiene WhatsApp instalado. Cero fricción de adopción.">Canal elegido porque el 94% de adultos mayores en Ecuador ya tiene WhatsApp instalado. Cero fricción de adopción.</span></div>
+    </div>
+    <div class="tg">
+      <div class="tg-layer">Inteligencia Artificial</div>
+      <div class="tg-name">🤖 <span class="editable" contenteditable="true" data-placeholder="Claude API (Anthropic)">Claude API (Anthropic)</span></div>
+      <div class="tg-why"><span class="editable" contenteditable="true" data-placeholder="Interpreta mensajes en lenguaje natural, extrae valores numéricos, maneja errores de escritura y genera respuestas empáticas adaptadas al perfil del paciente.">Interpreta mensajes en lenguaje natural, extrae valores numéricos y genera respuestas empáticas adaptadas al perfil del paciente.</span></div>
+    </div>
+    <div class="tg">
+      <div class="tg-layer">Modelo predictivo</div>
+      <div class="tg-name">📊 <span class="editable" contenteditable="true" data-placeholder="Random Forest (scikit-learn)">Random Forest (scikit-learn)</span></div>
+      <div class="tg-why"><span class="editable" contenteditable="true" data-placeholder="Clasifica el nivel de riesgo del paciente basado en historial de 7 días: normal, atención o urgente. Entrenado con datos sintéticos validados por médico.">Clasifica el nivel de riesgo basado en historial de 7 días: normal, atención o urgente. Validado con médico endocrinólogo.</span></div>
+    </div>
+    <div class="tg">
+      <div class="tg-layer">Backend</div>
+      <div class="tg-name">⚙️ <span class="editable" contenteditable="true" data-placeholder="Python + FastAPI">Python + FastAPI</span></div>
+      <div class="tg-why"><span class="editable" contenteditable="true" data-placeholder="Orquesta el flujo: recibe el mensaje de WhatsApp, llama a Claude, ejecuta el modelo predictivo y envía la respuesta. Deploy en Railway.">Orquesta el flujo: recibe mensaje, llama a Claude, ejecuta el modelo predictivo y envía respuesta. Deploy en Railway.</span></div>
+    </div>
+    <div class="tg">
+      <div class="tg-layer">Base de datos</div>
+      <div class="tg-name">🗄️ <span class="editable" contenteditable="true" data-placeholder="Supabase (PostgreSQL)">Supabase (PostgreSQL)</span></div>
+      <div class="tg-why"><span class="editable" contenteditable="true" data-placeholder="Almacena el historial de glucosa por paciente, perfil médico y registro de alertas enviadas. Cifrado AES-256.">Almacena historial de glucosa, perfil médico y registro de alertas. Cifrado AES-256. Acceso solo para médicos autorizados.</span></div>
+    </div>
+    <div class="tg">
+      <div class="tg-layer">Dashboard médico</div>
+      <div class="tg-name">📱 <span class="editable" contenteditable="true" data-placeholder="React + Vercel">React + Vercel</span></div>
+      <div class="tg-why"><span class="editable" contenteditable="true" data-placeholder="Panel web para médicos: visualiza el historial de todos sus pacientes, recibe alertas y puede escribirles directamente desde la interfaz.">Panel web para médicos: visualiza historial de pacientes, recibe alertas y puede responder directamente desde la interfaz.</span></div>
+    </div>
+  </div>
+
+  <p class="body-text" style="margin-top:1.1rem">
+    La decisión de <strong>no usar Blockchain</strong> en esta primera versión es deliberada: la información médica personal requiere privacidad estricta y velocidad de acceso que una base de datos centralizada cifrada provee de manera más eficiente para el caso de uso. <span class="editable" contenteditable="true" data-placeholder="La descentralización podría explorarse en una fase posterior para el intercambio de datos entre instituciones de salud.">La descentralización podría explorarse en una fase posterior para el intercambio de datos entre instituciones de salud.</span>
+  </p>
+</div>
+
+<!-- ══ 5. IMPACTO Y ODS ══ -->
+<div class="wp-section" id="s5">
+  <div class="sec-header">
+    <div class="sec-num">05</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--green)">Sección 5</div>
+      <div class="sec-title">Impacto y ODS</div>
+    </div>
+  </div>
+
+  <div class="ods-box">
+    <div class="ods-num"><span class="editable" contenteditable="true" data-placeholder="3">3</span></div>
+    <div>
+      <div class="ods-title">Objetivo de Desarrollo Sostenible</div>
+      <div class="ods-name"><span class="editable" contenteditable="true" data-placeholder="ODS 3 — Salud y Bienestar">ODS 3 — Salud y Bienestar</span></div>
+      <div class="ods-metrics">
+        <div class="ods-m"><span class="editable" contenteditable="true" data-placeholder="Meta 3.4: Reducir la mortalidad prematura por enfermedades no transmisibles en un 30% para 2030">Meta 3.4: Reducir la mortalidad prematura por enfermedades no transmisibles en un 30% para 2030</span></div>
+        <div class="ods-m"><span class="editable" contenteditable="true" data-placeholder="Meta 3.8: Lograr la cobertura sanitaria universal, incluida la protección contra los riesgos financieros">Meta 3.8: Cobertura sanitaria universal e inclusiva para grupos vulnerables</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text">
+    <span class="editable" contenteditable="true" data-placeholder="Escribe 2-3 párrafos explicando cómo tu solución impacta directamente el ODS elegido. Incluye métricas proyectadas.">MediAlert contribuye directamente a la Meta 3.4 del ODS 3 al reducir la incidencia de complicaciones agudas por diabetes — la segunda causa de muerte evitable en Ecuador. Al incrementar la adherencia al monitoreo del 32% al 78%, el sistema genera un registro continuo que permite intervención médica preventiva antes de una crisis.</span>
+  </p>
+
+  <div class="stat-row">
+    <div class="sr">
+      <div class="sv" style="color:var(--green)"><span class="editable" contenteditable="true" data-placeholder="-30%">-30%</span></div>
+      <div class="sl">Hospitalizaciones est.</div>
+      <div class="sd">Proyección año 1 con 1,000 usuarios activos. Basado en estudios de adherencia digital (OPS 2021)</div>
+    </div>
+    <div class="sr">
+      <div class="sv" style="color:var(--accent)"><span class="editable" contenteditable="true" data-placeholder="+46%">+46%</span></div>
+      <div class="sl">Adherencia monitoreo</div>
+      <div class="sd">De 32% a 78% en el piloto de 12 usuarios (Mayo 2026). Medido por frecuencia de mensajes diarios</div>
+    </div>
+    <div class="sr">
+      <div class="sv" style="color:var(--yellow)"><span class="editable" contenteditable="true" data-placeholder="$12K">$12K</span></div>
+      <div class="sl">Ahorro / año por paciente</div>
+      <div class="sd">Costo evitado por hospitalización de emergencia vs. costo de operación del sistema ($3/mes/usuario)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 6. MODELO DE NEGOCIO ══ -->
+<div class="wp-section" id="s6">
+  <div class="sec-header">
+    <div class="sec-num">06</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--yellow)">Sección 6</div>
+      <div class="sec-title">Modelo de Negocio</div>
+    </div>
+  </div>
+
+  <div class="highlight-box yellow">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> Explica cómo se sostiene económicamente tu solución. ¿Quién paga? ¿Cuánto? ¿Quién sería el cliente principal? No necesita ser perfecto — necesita ser creíble. 200 palabras.
+    </div>
+  </div>
+
+  <p class="body-text">
+    El modelo de negocio de MediAlert es <strong>B2B2C</strong>: el cliente directo no es el paciente — es la institución de salud. Los hospitales, clínicas y aseguradoras de salud pagan una tarifa mensual por acceso a la plataforma para sus pacientes, reduciendo así su propio costo de hospitalizaciones de emergencia.
+  </p>
+
+  <div class="roadmap">
+    <div class="rm">
+      <div class="rm-phase rmp-1"><span class="editable" contenteditable="true" data-placeholder="Fuente 1">SaaS Clínicas</span></div>
+      <div class="rm-content">
+        <div class="rm-title"><span class="editable" contenteditable="true" data-placeholder="$X/mes por clínica con hasta N pacientes">$150/mes por clínica con hasta 100 pacientes activos</span></div>
+        <div class="rm-desc"><span class="editable" contenteditable="true" data-placeholder="Describe quién paga y por qué">Las clínicas pagan porque reducen su carga operativa de seguimiento manual y disminuyen las readmisiones de emergencia que les generan costos.</span></div>
+      </div>
+    </div>
+    <div class="rm">
+      <div class="rm-phase rmp-2"><span class="editable" contenteditable="true" data-placeholder="Fuente 2">Aseguradoras</span></div>
+      <div class="rm-content">
+        <div class="rm-title"><span class="editable" contenteditable="true" data-placeholder="$X por asegurado activo">$3/mes por asegurado activo en el programa</span></div>
+        <div class="rm-desc"><span class="editable" contenteditable="true" data-placeholder="Describe el modelo con aseguradoras">Las aseguradoras de salud recuperan 4x la inversión al evitar hospitalizaciones de emergencia que promedian $3,200 por evento.</span></div>
+      </div>
+    </div>
+    <div class="rm">
+      <div class="rm-phase rmp-3"><span class="editable" contenteditable="true" data-placeholder="Fuente 3">Sector público</span></div>
+      <div class="rm-content">
+        <div class="rm-title"><span class="editable" contenteditable="true" data-placeholder="Alianza con MSP / IESS">Alianza con MSP / IESS — modelo gratuito subsidiado</span></div>
+        <div class="rm-desc"><span class="editable" contenteditable="true" data-placeholder="Modelo público">El MSP financia el acceso gratuito para pacientes de bajos ingresos a través del presupuesto de prevención. El ahorro en hospitalizaciones justifica el subsidio.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 7. INVESTIGACIÓN DE MERCADO ══ -->
+<div class="wp-section" id="s7">
+  <div class="sec-header">
+    <div class="sec-num">07</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--red)">Sección 7</div>
+      <div class="sec-title">Investigación de Mercado</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> Incluye tamaño del mercado, 3 competidores con sus debilidades y tu ventaja diferencial. Las fuentes deben ser reales y verificables. 250 palabras.
+    </div>
+  </div>
+
+  <p class="body-text">
+    El mercado de gestión digital de enfermedades crónicas en Latinoamérica alcanzó los <span class="editable" contenteditable="true" data-placeholder="$2.1 mil millones en 2023">$2.1 mil millones en 2023</span> y se proyecta a <span class="editable" contenteditable="true" data-placeholder="$5.8 mil millones para 2028">$5.8 mil millones para 2028</span>, con una tasa de crecimiento anual del 22.5% (Grand View Research, 2024). Solo en Ecuador, el gasto en diabetes representa el 8% del presupuesto total de salud del MSP.
+  </p>
+
+  <table class="comp-table">
+    <thead><tr><th>Competidor</th><th>Qué hace</th><th>Debilidad principal</th><th>Nuestra ventaja</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="tc-name"><span class="editable" contenteditable="true" data-placeholder="MySugr">MySugr</span></td>
+        <td><span class="editable" contenteditable="true" data-placeholder="App de registro de glucosa con análisis básico">App de registro de glucosa con análisis básico</span></td>
+        <td class="tc-bad"><span class="editable" contenteditable="true" data-placeholder="Requiere descarga, plan premium $3/mes, interfaz compleja para adultos mayores">Requiere descarga, plan premium, interfaz compleja para adultos mayores</span></td>
+        <td class="tc-good"><span class="editable" contenteditable="true" data-placeholder="Solo WhatsApp, sin apps, sin costos de hardware">Solo WhatsApp, sin apps, cero fricción</span></td>
+      </tr>
+      <tr>
+        <td class="tc-name"><span class="editable" contenteditable="true" data-placeholder="Dario Health">Dario Health</span></td>
+        <td><span class="editable" contenteditable="true" data-placeholder="Dispositivo físico + app + coaching">Dispositivo físico + app + coaching</span></td>
+        <td class="tc-bad"><span class="editable" contenteditable="true" data-placeholder="Hardware costo $199, no disponible en Ecuador, solo inglés">Hardware $199, no disponible en Ecuador, solo inglés</span></td>
+        <td class="tc-good"><span class="editable" contenteditable="true" data-placeholder="100% digital, sin hardware, en español, en WhatsApp">Sin hardware, en español, canal local</span></td>
+      </tr>
+      <tr>
+        <td class="tc-name"><span class="editable" contenteditable="true" data-placeholder="Seguimiento manual médico">Seguimiento manual médico</span></td>
+        <td><span class="editable" contenteditable="true" data-placeholder="Llamadas telefónicas periódicas del médico al paciente">Llamadas telefónicas periódicas al paciente</span></td>
+        <td class="tc-bad"><span class="editable" contenteditable="true" data-placeholder="No escalable, costoso en tiempo médico, sin registro digital, no hay alertas en tiempo real">No escalable, costoso, sin alertas en tiempo real</span></td>
+        <td class="tc-good"><span class="editable" contenteditable="true" data-placeholder="Automatizado, 24/7, registro digital automático, alertas inmediatas">Automatizado, 24/7, alertas inmediatas</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box green" style="margin-top:1.1rem">
+    <div class="hb-text"><strong>Ventaja diferencial única:</strong> <span class="editable" contenteditable="true" data-placeholder="MediAlert es la única solución que no requiere hardware adicional ni descarga de apps, opera sobre WhatsApp que el 94% de adultos mayores ecuatorianos ya usa, y es la única con integración médico-paciente en tiempo real en español coloquial y contexto local.">MediAlert es la única solución que opera sobre WhatsApp — el canal que el 94% de adultos mayores ecuatorianos ya usa — con detección de riesgo en tiempo real, alertas médicas automáticas y contexto local en español coloquial.</span></div>
+  </div>
+</div>
+
+<!-- ══ 8. DESARROLLO Y APRENDIZAJES ══ -->
+<div class="wp-section" id="s8">
+  <div class="sec-header">
+    <div class="sec-num">08</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--accent)">Sección 8 · Solo para v1.0</div>
+      <div class="sec-title">Desarrollo y Aprendizajes</div>
+    </div>
+  </div>
+
+  <div class="highlight-box accent">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> Esta sección solo se incluye en el Whitepaper v1.0 (Semana 3). Describe qué construiste, qué aprendiste y qué cambió respecto a tu plan original. 250 palabras.
+    </div>
+  </div>
+
+  <p class="body-text">
+    <strong>Lo que construimos:</strong> <span class="editable" contenteditable="true" data-placeholder="Describe el MVP que desarrollaron">Un chatbot funcional en WhatsApp conectado a la API de Claude, con base de datos en Supabase y un dashboard web para médicos desplegado en Vercel. El sistema procesa mensajes de texto y voice notes, extrae valores de glucosa y genera respuestas personalizadas con recomendación de nivel de riesgo.</span>
+  </p>
+
+  <p class="body-text">
+    <strong>URL del MVP en producción:</strong> <a href="#" style="color:#a5b4fc"><span class="editable" contenteditable="true" data-placeholder="https://tu-mvp.vercel.app">https://medialert.vercel.app</span></a>
+  </p>
+
+  <p class="body-text">
+    <strong>Desafíos técnicos resueltos:</strong> <span class="editable" contenteditable="true" data-placeholder="Describe 2-3 problemas técnicos que enfrentaron y cómo los resolvieron">El principal desafío fue el parsing de mensajes de voz — los pacientes usan términos coloquiales como "mi azúcar está en 180" en vez de valores numéricos estandarizados. Resolvimos esto con un prompt especializado en Claude que interpreta variaciones lingüísticas ecuatorianas.</span>
+  </p>
+
+  <p class="body-text">
+    <strong>Hipótesis que cambió:</strong> <span class="editable" contenteditable="true" data-placeholder="¿Qué asumieron al inicio que resultó ser diferente durante el desarrollo?">Asumimos que los médicos querrían un app nativa. En las 3 entrevistas con médicos del piloto, todos prefirieron recibir alertas por WhatsApp también — lo que simplificó el sistema y eliminó la necesidad del dashboard web como MVP crítico.</span>
+  </p>
+</div>
+
+<!-- ══ 9. VALIDACIÓN CON USUARIOS ══ -->
+<div class="wp-section" id="s9">
+  <div class="sec-header">
+    <div class="sec-num">09</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--green)">Sección 9 · Solo para v1.0</div>
+      <div class="sec-title">Validación con Usuarios</div>
+    </div>
+  </div>
+
+  <div class="highlight-box green">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> Si hicieron pruebas con usuarios reales, descríbelas con números. Si no, describe el usuario ideal y qué validarían. 150 palabras.
+    </div>
+  </div>
+
+  <p class="body-text">
+    <span class="editable" contenteditable="true" data-placeholder="Piloto con 12 usuarios (8 pacientes + 4 médicos) durante 2 semanas en mayo 2026. Resultados: adherencia al monitoreo del 78% vs. 32% previo (medida por frecuencia de mensajes diarios). NPS de 72 puntos. Los médicos valoraron especialmente las alertas automáticas que antes hacían manualmente.">Piloto con <strong>12 usuarios</strong> (8 pacientes + 4 médicos) durante 2 semanas en mayo 2026. Resultados: <strong>adherencia al monitoreo del 78%</strong> vs. 32% previo. NPS de 72 puntos. Los médicos valoraron especialmente las alertas automáticas.</span>
+  </p>
+
+  <p class="body-text">
+    <strong>Feedback más valioso recibido:</strong> <span class="editable" contenteditable="true" data-placeholder="Cita textual de un usuario real o describe el feedback principal">"Ahora mi abuela me manda su glucosa todos los días porque dice que 'el bot la felicita cuando está bien'. El refuerzo positivo funciona." — Dr. Carlos Martínez, médico participante del piloto.</span>
+  </p>
+</div>
+
+<!-- ══ 10. ROADMAP ══ -->
+<div class="wp-section" id="s10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-meta">
+      <div class="sec-label" style="color:var(--yellow)">Sección 10</div>
+      <div class="sec-title">Roadmap — Siguientes Pasos</div>
+    </div>
+  </div>
+
+  <div class="highlight-box yellow">
+    <div class="hb-text">
+      <strong>📌 Instrucción:</strong> 3 fases de evolución del proyecto. Sé específico sobre qué se agrega en cada fase y por qué en ese orden. 150 palabras.
+    </div>
+  </div>
+
+  <div class="roadmap">
+    <div class="rm">
+      <div class="rm-phase rmp-1">Fase 1 · 0–3 meses</div>
+      <div class="rm-content">
+        <div class="rm-title"><span class="editable" contenteditable="true" data-placeholder="Escalar el piloto">Escalar el piloto: 100 pacientes activos, 5 clínicas</span></div>
+        <div class="rm-desc"><span class="editable" contenteditable="true" data-placeholder="Describe qué construyen o implementan en esta fase">Refinamiento del modelo predictivo con datos reales. Integración con sistema de citas del MSP. Primer acuerdo comercial con clínica privada en Quito.</span></div>
+      </div>
+    </div>
+    <div class="rm">
+      <div class="rm-phase rmp-2">Fase 2 · 3–9 meses</div>
+      <div class="rm-content">
+        <div class="rm-title"><span class="editable" contenteditable="true" data-placeholder="Expansión nacional">Expansión nacional: 1,000 pacientes, integración IESS</span></div>
+        <div class="rm-desc"><span class="editable" contenteditable="true" data-placeholder="Describe qué construyen o implementan en esta fase">Expansión a Guayaquil y Cuenca. Integración con el sistema HIS del IESS. Lanzamiento del módulo para hipertensión como segunda patología.</span></div>
+      </div>
+    </div>
+    <div class="rm">
+      <div class="rm-phase rmp-3">Fase 3 · 9–18 meses</div>
+      <div class="rm-content">
+        <div class="rm-title"><span class="editable" contenteditable="true" data-placeholder="Expansión regional">Expansión regional: Perú, Colombia. Ronda seed.</span></div>
+        <div class="rm-desc"><span class="editable" contenteditable="true" data-placeholder="Describe la visión a largo plazo">Expansión a dos mercados adicionales de Latinoamérica. Ronda de inversión seed para financiar operaciones. Plataforma multi-enfermedad crónica.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER DEL DOCUMENTO -->
+<div style="padding:1.75rem 4rem;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+  <div style="font-size:.7rem;color:var(--mu)">🏆 <strong style="color:rgba(255,255,255,.4)">Eight Academy · Hackathon 2026</strong> · Confidencial</div>
+  <div style="font-size:.7rem;color:var(--mu)">Proyecto: <span class="editable" contenteditable="true" data-placeholder="Nombre de tu proyecto" style="font-size:.7rem">MediAlert</span> · Versión 1.0 · <span class="editable" contenteditable="true" data-placeholder="Junio 2026" style="font-size:.7rem">Junio 2026</span></div>
+  <div style="font-size:.7rem;color:var(--mu)">Equipo: <span class="editable" contenteditable="true" data-placeholder="Nombre del equipo" style="font-size:.7rem">Team MediAlert</span></div>
+</div>
+
+</div><!-- .wp -->
+</div><!-- .doc-wrapper -->
+
+<script>
+// PROGRESS BAR
+const bar=document.getElementById('bar');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  bar.style.width=(window.scrollY/h*100)+'%';
+},{passive:true});
+
+// ACTIVE NAV
+const sections=document.querySelectorAll('.wp-section[id]');
+const navLinks=document.querySelectorAll('.np');
+const navObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.remove('on'));
+      const a=document.querySelector(`.np[href="#${e.target.id}"]`);
+      if(a) a.classList.add('on');
+    }
+  });
+},{threshold:.4});
+sections.forEach(s=>navObs.observe(s));
+
+// PRINT CLEAN
+window.addEventListener('beforeprint',()=>{
+  document.querySelectorAll('.editable').forEach(el=>{
+    el.setAttribute('data-orig',el.getAttribute('contenteditable'));
+    el.removeAttribute('contenteditable');
+  });
+});
+window.addEventListener('afterprint',()=>{
+  document.querySelectorAll('.editable').forEach(el=>{
+    const orig=el.getAttribute('data-orig');
+    if(orig) el.setAttribute('contenteditable',orig);
+  });
+});
+</script>
+</body>
+</html>
