@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>How To · Hackathon Eight Academy 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --s1:#6366F1;--s2:#10B981;--s3:#F59E0B;--fin:#EF4444;
+  --dk:#050508;--cd:#0C0C14;--br:#1A1A28;--tx:#E2E2F0;--mu:#5C5C78;--wh:#fff;
+  --glass:rgba(255,255,255,.04);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--dk);color:var(--tx);font-family:'Inter',sans-serif;line-height:1.65;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--s1),var(--s2));border-radius:2px}
+#bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--s1),var(--s2),var(--s3),var(--fin));z-index:9999;pointer-events:none;width:0}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:.7rem 2.5rem;background:rgba(5,5,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nlogo{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:800;color:rgba(255,255,255,.3)}.nlogo b{color:var(--s1)}
+.ntabs{display:flex;gap:.15rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:25px;padding:.18rem}
+.nt{padding:.28rem .85rem;border-radius:20px;font-size:.62rem;font-weight:700;color:var(--mu);text-decoration:none;transition:all .2s;white-space:nowrap}
+.nt:hover,.nt.on{color:#fff}
+.nt-s1:hover,.nt-s1.on{background:rgba(99,102,241,.2);color:#a5b4fc}
+.nt-s2:hover,.nt-s2.on{background:rgba(16,185,129,.18);color:#6ee7b7}
+.nt-s3:hover,.nt-s3.on{background:rgba(245,158,11,.18);color:#fcd34d}
+.nt-fin:hover,.nt-fin.on{background:rgba(239,68,68,.18);color:#fca5a5}
+
+/* HERO */
+.hero{padding:7.5rem 3.5rem 4rem;max-width:1100px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);border-radius:25px;padding:.32rem 1rem;font-size:.58rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1.75rem}
+.dot{width:5px;height:5px;border-radius:50%;animation:bl 1.4s infinite;flex-shrink:0}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.15}}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,6vw,6rem);font-weight:900;line-height:.88;letter-spacing:-3px;margin-bottom:1.25rem}
+.hero p{font-size:1rem;color:var(--mu);max-width:620px;margin-bottom:2rem}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:2rem}
+.hs{background:var(--glass);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.1rem;text-align:center}
+.hs .v{font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:900;line-height:1}
+.hs .l{font-size:.56rem;color:var(--mu);text-transform:uppercase;letter-spacing:1.5px;margin-top:.3rem}
+
+/* WEEK WRAPPER */
+.week{max-width:1100px;margin:0 auto;padding:4rem 3.5rem}
+.wk-hdr{display:flex;align-items:center;gap:1.25rem;margin-bottom:2.5rem;padding:1.5rem 2rem;border-radius:20px;border:1px solid rgba(255,255,255,.06)}
+.wk-num{font-family:'Space Grotesk',sans-serif;font-size:4.5rem;font-weight:900;line-height:1;opacity:.12;flex-shrink:0}
+.wk-badge{font-size:.55rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:.2rem .7rem;border-radius:20px;display:inline-block;margin-bottom:.45rem}
+.wk-title{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:900;color:var(--wh);letter-spacing:-.5px}
+.wk-sub{font-size:.8rem;color:var(--mu);margin-top:.25rem}
+/* color themes */
+.wk-s1{background:linear-gradient(135deg,rgba(99,102,241,.07),transparent)}.wk-s1 .wk-num{color:var(--s1)}
+.wk-s2{background:linear-gradient(135deg,rgba(16,185,129,.07),transparent)}.wk-s2 .wk-num{color:var(--s2)}
+.wk-s3{background:linear-gradient(135deg,rgba(245,158,11,.07),transparent)}.wk-s3 .wk-num{color:var(--s3)}
+.bgs1{background:rgba(99,102,241,.14);color:#a5b4fc;border:1px solid rgba(99,102,241,.25)}
+.bgs2{background:rgba(16,185,129,.12);color:#6ee7b7;border:1px solid rgba(16,185,129,.22)}
+.bgs3{background:rgba(245,158,11,.12);color:#fcd34d;border:1px solid rgba(245,158,11,.22)}
+.bgfin{background:rgba(239,68,68,.14);color:#fca5a5;border:1px solid rgba(239,68,68,.25)}
+
+/* STEP BLOCK */
+.how-block{background:var(--cd);border:1px solid var(--br);border-radius:20px;margin-bottom:1.5rem;overflow:hidden}
+.how-block-head{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.5rem;cursor:pointer;user-select:none;transition:background .2s}
+.how-block-head:hover{background:rgba(255,255,255,.02)}
+.hb-num{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:900;flex-shrink:0}
+.hb-n-s1{background:rgba(99,102,241,.2);color:#a5b4fc;border:1px solid rgba(99,102,241,.3)}
+.hb-n-s2{background:rgba(16,185,129,.18);color:#6ee7b7;border:1px solid rgba(16,185,129,.28)}
+.hb-n-s3{background:rgba(245,158,11,.18);color:#fcd34d;border:1px solid rgba(245,158,11,.28)}
+.hb-n-fin{background:rgba(239,68,68,.18);color:#fca5a5;border:1px solid rgba(239,68,68,.28)}
+.hb-title{font-size:.95rem;font-weight:700;color:var(--wh);flex:1}
+.hb-tag{font-size:.55rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:.18rem .6rem;border-radius:10px;flex-shrink:0}
+.tag-herr{background:rgba(59,130,246,.1);color:#93c5fd;border:1px solid rgba(59,130,246,.2)}
+.tag-paso{background:rgba(99,102,241,.1);color:#c4b5fd;border:1px solid rgba(99,102,241,.2)}
+.tag-prom{background:rgba(139,92,246,.12);color:#ddd6fe;border:1px solid rgba(139,92,246,.22)}
+.tag-ej{background:rgba(16,185,129,.08);color:#6ee7b7;border:1px solid rgba(16,185,129,.18)}
+.tag-check{background:rgba(245,158,11,.1);color:#fcd34d;border:1px solid rgba(245,158,11,.2)}
+.tog{font-size:.75rem;color:var(--mu);margin-left:.5rem;transition:transform .2s;flex-shrink:0}
+.collapsed .tog{transform:rotate(-90deg)}
+
+.how-body{padding:1.5rem}
+.collapsed .how-body{display:none}
+
+/* STEPS LIST */
+.steps{display:flex;flex-direction:column;gap:.65rem;counter-reset:step}
+.step{display:flex;align-items:flex-start;gap:1rem;padding:.85rem 1rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;position:relative}
+.step::before{counter-increment:step;content:counter(step);width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;flex-shrink:0;font-family:'Space Grotesk',sans-serif;margin-top:.05rem}
+.step-s1::before{background:rgba(99,102,241,.22);color:#a5b4fc;border:1px solid rgba(99,102,241,.35)}
+.step-s2::before{background:rgba(16,185,129,.18);color:#6ee7b7;border:1px solid rgba(16,185,129,.3)}
+.step-s3::before{background:rgba(245,158,11,.18);color:#fcd34d;border:1px solid rgba(245,158,11,.3)}
+.step-fin::before{background:rgba(239,68,68,.18);color:#fca5a5;border:1px solid rgba(239,68,68,.3)}
+.step-content{flex:1}
+.step-title{font-size:.85rem;font-weight:700;color:var(--wh);margin-bottom:.3rem}
+.step-desc{font-size:.8rem;color:var(--mu);line-height:1.7}
+.step-desc strong{color:var(--tx)}
+.step-desc a{color:#a5b4fc;text-decoration:none}
+.step-desc a:hover{text-decoration:underline}
+
+/* PROMPT BOX */
+.prompt-box{background:#07070F;border:1px solid rgba(99,102,241,.25);border-radius:14px;overflow:hidden;margin:.5rem 0}
+.pb-head{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1rem;background:rgba(99,102,241,.08);border-bottom:1px solid rgba(99,102,241,.15)}
+.pb-label{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#a5b4fc;display:flex;align-items:center;gap:.4rem}
+.copy-btn{font-size:.6rem;font-weight:700;padding:.2rem .6rem;border-radius:8px;background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.3);cursor:pointer;transition:all .2s}
+.copy-btn:hover{background:rgba(99,102,241,.3)}
+.copy-btn.copied{background:rgba(16,185,129,.2);color:#6ee7b7;border-color:rgba(16,185,129,.35)}
+.pb-body{padding:1rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#C8C8E8;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.pb-body .ph{color:#6ee7b7}
+.pb-body .kw{color:#a5b4fc}
+.pb-body .str{color:#fcd34d}
+
+/* EXAMPLE BOX */
+.ex-box{background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:14px;padding:1.1rem 1.25rem;margin:.5rem 0}
+.ex-label{font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6ee7b7;margin-bottom:.6rem;display:flex;align-items:center;gap:.35rem}
+.ex-content{font-size:.82rem;color:var(--tx);line-height:1.75}
+.ex-content strong{color:#6ee7b7}
+
+/* TOOL CARD */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:.5rem 0}
+.tc{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:.9rem 1rem;transition:all .2s}
+.tc:hover{border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
+.tc-ico{font-size:1.4rem;margin-bottom:.45rem}
+.tc-name{font-size:.8rem;font-weight:700;color:var(--wh);margin-bottom:.2rem}
+.tc-desc{font-size:.7rem;color:var(--mu);line-height:1.55}
+.tc-link{font-size:.65rem;color:#a5b4fc;text-decoration:none;margin-top:.35rem;display:block}
+.tc-link:hover{text-decoration:underline}
+.tc-free{display:inline-block;font-size:.52rem;font-weight:700;padding:.1rem .4rem;border-radius:5px;background:rgba(16,185,129,.1);color:#6ee7b7;border:1px solid rgba(16,185,129,.2);margin-top:.35rem}
+
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:.4rem}
+.ci{display:flex;align-items:flex-start;gap:.65rem;padding:.6rem .8rem;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);cursor:pointer;transition:all .2s}
+.ci:hover{background:rgba(255,255,255,.035)}
+.ci input[type=checkbox]{width:16px;height:16px;border-radius:4px;cursor:pointer;accent-color:var(--s2);flex-shrink:0;margin-top:.15rem}
+.ci label{font-size:.8rem;color:var(--tx);cursor:pointer;line-height:1.55}
+.ci.done label{text-decoration:line-through;color:var(--mu)}
+.ci.critical{border-color:rgba(239,68,68,.18);background:rgba(239,68,68,.04)}
+.ci.critical label{color:var(--tx)}
+
+/* WARNING / TIP */
+.callout{border-radius:12px;padding:.85rem 1.1rem;display:flex;align-items:flex-start;gap:.7rem;font-size:.8rem;line-height:1.7;margin:.5rem 0}
+.cico{font-size:1rem;flex-shrink:0;margin-top:.05rem}
+.c-w{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);color:var(--tx)}.c-w strong{color:#fcd34d}
+.c-t{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.18);color:var(--tx)}.c-t strong{color:#6ee7b7}
+.c-i{background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.2);color:var(--tx)}.c-i strong{color:#a5b4fc}
+.c-d{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);color:var(--tx)}.c-d strong{color:#fca5a5}
+
+/* ENTREGABLE FINAL */
+.entregable{background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(245,158,11,.04));border:1.5px solid rgba(239,68,68,.28);border-radius:18px;padding:1.75rem;margin-top:1.5rem}
+.entregable-title{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:900;color:var(--wh);display:flex;align-items:center;gap:.6rem;margin-bottom:1.1rem}
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.eg-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:.9rem 1rem}
+.eg-lbl{font-size:.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:.4rem}
+.eg-val{font-size:.8rem;color:var(--tx);line-height:1.6}
+.eg-val strong{color:var(--wh)}
+
+/* SECTION DIVIDER */
+.sdiv{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);margin:0 3.5rem}
+
+footer{padding:2.5rem 3.5rem;border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+footer p{font-size:.7rem;color:var(--mu)}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.rv.vis{opacity:1;transform:none}
+
+@media(max-width:860px){
+  nav{padding:.65rem 1rem}.ntabs{display:none}
+  .hero,.week{padding:6.5rem 1.25rem 3rem}
+  .hero-stats,.tools-grid{grid-template-columns:1fr 1fr}
+  .eg{grid-template-columns:1fr}
+  .sdiv{margin:0 1.25rem}
+  footer{padding:2rem 1.25rem;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<nav>
+  <div class="nlogo"><b>EIGHT ACADEMY</b> · Hackathon 2026 · How To</div>
+  <div class="ntabs">
+    <a class="nt nt-s1 on" href="#s1">S1 · Prefactibilidad</a>
+    <a class="nt nt-s2" href="#s2">S2 · MVP</a>
+    <a class="nt nt-s3" href="#s3">S3 · Pitch</a>
+    <a class="nt nt-fin" href="#final">🏆 Gran Final</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero rv">
+  <div class="hero-badge"><div class="dot" style="background:var(--s1)"></div>Eight Academy · Hackathon 2026 · Manual de Participante</div>
+  <h1 style="background:linear-gradient(135deg,var(--wh),rgba(255,255,255,.55));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Cómo hacerlo.<br/>Paso a paso.</h1>
+  <p>Sigue estas instrucciones exactas cada semana. Tienes los prompts listos para copiar, ejemplos reales y checklists para saber si vas bien. No necesitas experiencia previa.</p>
+  <div class="hero-stats">
+    <div class="hs"><div class="v" style="color:#a5b4fc">3</div><div class="l">Semanas</div></div>
+    <div class="hs"><div class="v" style="color:#6ee7b7">3</div><div class="l">Entregables</div></div>
+    <div class="hs"><div class="v" style="color:#fcd34d">20</div><div class="l">Finalistas</div></div>
+    <div class="hs"><div class="v" style="color:#fca5a5">6 Jun</div><div class="l">Gran Final</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SEMANA 1
+══════════════════════════════════════ -->
+<div class="sdiv"></div>
+<section class="week rv" id="s1">
+
+  <div class="wk-hdr wk-s1">
+    <div class="wk-num">01</div>
+    <div>
+      <div class="wk-badge bgs1">Semana 1 · 18–22 Mayo</div>
+      <div class="wk-title">Equipo, Idea y Prefactibilidad</div>
+      <div class="wk-sub">Forma tu equipo, define el problema, crea tu GitHub y escribe tu primer Whitepaper.</div>
+    </div>
+  </div>
+
+  <!-- PASO 1: FORMA TU EQUIPO -->
+  <div class="how-block" id="b-s1-1">
+    <div class="how-block-head" onclick="tog('b-s1-1')">
+      <div class="hb-num hb-n-s1">1</div>
+      <div class="hb-title">Forma tu equipo</div>
+      <div class="hb-tag tag-paso">Paso a paso</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="steps">
+        <div class="step step-s1">
+          <div class="step-content">
+            <div class="step-title">Elige entre 3 y 5 personas</div>
+            <div class="step-desc">Busca al menos 1 persona técnica (sabe o quiere aprender a programar) y 1 persona de negocio (sabe presentar, comunicar o vender). Los equipos mixtos ganan más que los puramente técnicos.</div>
+          </div>
+        </div>
+        <div class="step step-s1">
+          <div class="step-content">
+            <div class="step-title">Asigna roles ahora mismo</div>
+            <div class="step-desc">
+              <strong>Tech Lead</strong> → construye el MVP<br/>
+              <strong>Design Lead</strong> → wireframes, UI, infografía<br/>
+              <strong>Business Lead</strong> → investigación, modelo de negocio<br/>
+              <strong>Presenter</strong> → pitch, video demo, storytelling<br/>
+              <em>Una persona puede tener 2 roles si el equipo es pequeño.</em>
+            </div>
+          </div>
+        </div>
+        <div class="step step-s1">
+          <div class="step-content">
+            <div class="step-title">Elige el nombre del equipo</div>
+            <div class="step-desc">Corto, memorable, relacionado con su proyecto. Ejemplo: <strong>GreenTrace</strong>, <strong>MedBot</strong>, <strong>SafeChain</strong>. Evita nombres genéricos como "Equipo 1" o "Innovation Team".</div>
+          </div>
+        </div>
+        <div class="step step-s1">
+          <div class="step-content">
+            <div class="step-title">Crea el grupo de comunicación</div>
+            <div class="step-desc">WhatsApp o Telegram. Agrega a tu mentor desde el primer día. Activa las notificaciones — la comunicación rápida marca la diferencia en un hackathon.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 2: GITHUB -->
+  <div class="how-block" id="b-s1-2">
+    <div class="how-block-head" onclick="tog('b-s1-2')">
+      <div class="hb-num hb-n-s1">2</div>
+      <div class="hb-title">Crea tu repositorio en GitHub</div>
+      <div class="hb-tag tag-herr">Herramientas</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="tools-grid">
+        <div class="tc"><div class="tc-ico">🐙</div><div class="tc-name">GitHub</div><div class="tc-desc">Tu repositorio de código. Todo el equipo debe tener cuenta.</div><a class="tc-link" href="https://github.com" target="_blank">→ github.com</a><div class="tc-free">Gratis</div></div>
+        <div class="tc"><div class="tc-ico">💻</div><div class="tc-name">VS Code</div><div class="tc-desc">Editor de código. Instala la extensión GitHub Copilot.</div><a class="tc-link" href="https://code.visualstudio.com" target="_blank">→ code.visualstudio.com</a><div class="tc-free">Gratis</div></div>
+        <div class="tc"><div class="tc-ico">📋</div><div class="tc-name">Notion</div><div class="tc-desc">Tablero de tareas y documentación del equipo.</div><a class="tc-link" href="https://notion.so" target="_blank">→ notion.so</a><div class="tc-free">Gratis</div></div>
+      </div>
+
+      <div class="steps" style="margin-top:1rem">
+        <div class="step step-s1">
+          <div class="step-content">
+            <div class="step-title">Ve a <a href="https://github.com/new" target="_blank">github.com/new</a></div>
+            <div class="step-desc">Nombre del repo: <strong>hackathon-[nombre-equipo]-2026</strong> (en minúsculas, sin espacios). Ej: <strong>hackathon-greenTrace-2026</strong>. Marca "Public" y "Add a README file".</div>
+          </div>
+        </div>
+        <div class="step step-s1">
+          <div class="step-content">
+            <div class="step-title">Edita el README.md con esta estructura</div>
+            <div class="step-desc">Copia este template y pégalo en tu README:</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">📄 Template README.md — copia y pega</div><button class="copy-btn" onclick="copyText(this,'readme')">Copiar</button></div>
+        <div class="pb-body" id="readme"># 🚀 [NOMBRE DEL PROYECTO]
+> Hackathon Eight Academy 2026
+
+## 👥 El Equipo
+| Nombre | Rol | GitHub |
+|--------|-----|--------|
+| [Nombre 1] | Tech Lead | @usuario1 |
+| [Nombre 2] | Design Lead | @usuario2 |
+| [Nombre 3] | Business Lead | @usuario3 |
+
+## 🎯 El Problema
+[Describe en 2-3 oraciones quién sufre este problema y por qué las soluciones actuales no funcionan]
+
+## 💡 Nuestra Solución
+[Describe tu solución en 1 oración clara]
+
+## 🌍 ODS que impactamos
+ODS [número]: [nombre]
+
+## 🛠️ Tecnología
+- **IA:** [qué modelo/API usas y para qué]
+- **Blockchain (si aplica):** [red y uso específico]
+- **Stack:** [frontend + backend + base de datos]
+
+## 🔗 Links importantes
+- 🌐 MVP en vivo: [URL]
+- 🎬 Video demo: [URL]
+- 📄 Whitepaper: [link al PDF]
+
+## 📁 Estructura del proyecto
+/docs → Documentación y whitepaper
+/src  → Código fuente
+/assets → Imágenes y recursos</div>
+      </div>
+
+      <div class="steps" style="margin-top:1rem">
+        <div class="step step-s1">
+          <div class="step-content">
+            <div class="step-title">Agrega a todos los integrantes como colaboradores</div>
+            <div class="step-desc">Settings → Collaborators → "Add people". Escribe el usuario de GitHub de cada integrante. Todos deben aceptar la invitación.</div>
+          </div>
+        </div>
+        <div class="step step-s1">
+          <div class="step-content">
+            <div class="step-title">Haz el primer commit hoy</div>
+            <div class="step-desc">Aunque sea solo el README. <strong>El historial de commits diarios es parte de la evaluación.</strong> Sin commits = no hay evidencia de trabajo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout c-d" style="margin-top:.75rem">
+        <div class="cico">🚨</div>
+        <div><strong>Regla de oro:</strong> Commit todos los días. No importa qué tan pequeño sea el cambio. El jurado puede ver el historial del repo y ver quién trabajó y quién no.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 3: DEFINIR EL PROBLEMA Y ODS -->
+  <div class="how-block" id="b-s1-3">
+    <div class="how-block-head" onclick="tog('b-s1-3')">
+      <div class="hb-num hb-n-s1">3</div>
+      <div class="hb-title">Define tu problema, solución y ODS</div>
+      <div class="hb-tag tag-prom">Prompts listos</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="callout c-i">
+        <div class="cico">💡</div>
+        <div><strong>La regla más importante:</strong> Primero el problema, luego la tecnología. No al revés. "Vamos a usar Blockchain" no es un proyecto. "Este problema específico necesita descentralización porque..." sí lo es.</div>
+      </div>
+
+      <p style="font-size:.85rem;color:var(--mu);margin:.85rem 0 .5rem">Abre <a href="https://claude.ai" target="_blank" style="color:#a5b4fc">claude.ai</a> o <a href="https://chatgpt.com" target="_blank" style="color:#a5b4fc">chatgpt.com</a> y usa estos prompts en orden:</p>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt 1 — Validar el problema</div><button class="copy-btn" onclick="copyText(this,'p-s1-1')">Copiar</button></div>
+        <div class="pb-body" id="p-s1-1">Soy estudiante en un hackathon de tecnología (IA y Blockchain). Mi equipo quiere abordar el siguiente problema:
+
+[DESCRIBE TU PROBLEMA AQUÍ]
+
+Por favor ayúdame con:
+1. ¿Es este un problema real y relevante? Dame 3 estadísticas recientes de Ecuador o Latinoamérica que lo soporten.
+2. ¿Qué soluciones existen actualmente? ¿Por qué no son suficientes?
+3. ¿A cuántas personas afecta aproximadamente?
+4. Dame un dato impactante que podría usar en mi pitch para captar atención.
+
+Usa fuentes verificables y cita cada dato.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt 2 — Conectar con ODS</div><button class="copy-btn" onclick="copyText(this,'p-s1-2')">Copiar</button></div>
+        <div class="pb-body" id="p-s1-2">Mi proyecto resuelve: [DESCRIBE TU SOLUCIÓN EN 1 ORACIÓN]
+
+Necesito identificar el ODS (Objetivo de Desarrollo Sostenible de la ONU) más relevante para mi proyecto.
+
+Por favor:
+1. Dime cuál ODS aplica mejor y por qué específicamente
+2. Dame 2 ODS alternativos con justificación
+3. ¿Cómo puedo medir el impacto de mi solución en ese ODS? Dame 2-3 métricas concretas y medibles.
+4. Escríbeme un párrafo de 3 oraciones que explique la conexión entre mi solución y el ODS, listo para incluir en mi whitepaper.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt 3 — Justificar la tecnología</div><button class="copy-btn" onclick="copyText(this,'p-s1-3')">Copiar</button></div>
+        <div class="pb-body" id="p-s1-3">Mi solución es: [DESCRIBE TU SOLUCIÓN]
+El problema que resuelve: [DESCRIBE EL PROBLEMA]
+
+Quiero usar [IA / Blockchain / ambas] en mi proyecto.
+
+Por favor explícame:
+1. ¿Por qué la IA (o Blockchain) es la tecnología correcta aquí y no una solución tradicional?
+2. ¿Qué modelo de IA específico recomendarías usar y por qué? (ej: GPT-4, Claude, Gemini, modelo propio)
+3. Dame el flujo técnico exacto: Usuario hace X → Sistema hace Y con IA → Resultado Z
+4. ¿Qué riesgo técnico principal debo anticipar?</div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">✅ Ejemplo real — Propuesta inicial bien hecha</div>
+        <div class="ex-content">
+          <strong>Problema:</strong> El 68% de adultos mayores en Ecuador con diabetes no monitorea su glucosa regularmente porque los dispositivos son caros y difíciles de usar. Esto genera $47M anuales en hospitalizaciones evitables (MSP 2023).<br/><br/>
+          <strong>Solución:</strong> Un chatbot por WhatsApp que guía al paciente a registrar su glucosa diaria en lenguaje natural, genera alertas automáticas para el médico y predice riesgos con IA.<br/><br/>
+          <strong>Tecnología:</strong> Claude API para comprensión de lenguaje natural + WhatsApp Business API para el canal + modelo predictivo (Random Forest) para detección de riesgos.<br/><br/>
+          <strong>ODS 3</strong> — Salud y bienestar. Métrica: reducción del 30% en hospitalizaciones por crisis hiperglucémicas en usuarios activos.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4: CANVAS -->
+  <div class="how-block" id="b-s1-4">
+    <div class="how-block-head" onclick="tog('b-s1-4')">
+      <div class="hb-num hb-n-s1">4</div>
+      <div class="hb-title">Completa el Business Model Canvas</div>
+      <div class="hb-tag tag-prom">Prompts listos</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <p style="font-size:.83rem;color:var(--mu);margin-bottom:.85rem">Ve a <a href="https://www.canva.com/graphs/business-model-canvas/" target="_blank" style="color:#a5b4fc">Canva Business Model Canvas</a> o <a href="https://miro.com" target="_blank" style="color:#a5b4fc">Miro</a> y usa este prompt para llenarlo:</p>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Generar Canvas completo</div><button class="copy-btn" onclick="copyText(this,'p-s1-4')">Copiar</button></div>
+        <div class="pb-body" id="p-s1-4">Actúa como un experto en modelos de negocio y startups de impacto.
+
+Mi proyecto de hackathon:
+- Problema: [TU PROBLEMA]
+- Solución: [TU SOLUCIÓN]  
+- Tecnología: [IA / BLOCKCHAIN / AMBAS]
+- Usuario objetivo: [QUIÉN USA TU SOLUCIÓN]
+- ODS: [TU ODS]
+
+Completa el Business Model Canvas con los 9 bloques:
+
+1. SEGMENTOS DE CLIENTES: ¿Quiénes exactamente usan esto?
+2. PROPUESTA DE VALOR: ¿Qué problema resuelves y qué beneficio específico das?
+3. CANALES: ¿Cómo llega la solución al usuario?
+4. RELACIÓN CON CLIENTES: ¿Cómo interactúan con el producto?
+5. FUENTES DE INGRESOS: ¿Cómo genera dinero o sostenibilidad?
+6. RECURSOS CLAVE: ¿Qué necesitas para que funcione?
+7. ACTIVIDADES CLAVE: ¿Qué hace el sistema todos los días?
+8. SOCIOS CLAVE: ¿Con quién deberías aliarte?
+9. ESTRUCTURA DE COSTOS: ¿Cuáles son los costos principales?
+
+Sé específico, no genérico. Usa ejemplos concretos para cada bloque.</div>
+      </div>
+
+      <div class="callout c-t">
+        <div class="cico">💡</div>
+        <div><strong>Truco:</strong> Después de llenarlo, pide a Claude: <em>"Actúa como jurado de hackathon. Revisa este Canvas y dame las 3 debilidades más críticas."</em> — Arregla esas debilidades antes del entregable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 5: WHITEPAPER -->
+  <div class="how-block" id="b-s1-5">
+    <div class="how-block-head" onclick="tog('b-s1-5')">
+      <div class="hb-num hb-n-s1">5</div>
+      <div class="hb-title">Escribe el Whitepaper v0.1</div>
+      <div class="hb-tag tag-prom">Prompts listos</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <p style="font-size:.83rem;color:var(--mu);margin-bottom:.85rem">El Whitepaper debe tener entre 3 y 5 páginas. No es una tesis — es un documento ejecutivo claro y convincente. Usa Google Docs y expórtalo como PDF.</p>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Generar Whitepaper v0.1 completo</div><button class="copy-btn" onclick="copyText(this,'p-s1-5')">Copiar</button></div>
+        <div class="pb-body" id="p-s1-5">Actúa como escritor técnico especializado en proyectos de impacto social y tecnología.
+
+Genera un Whitepaper v0.1 para mi proyecto de hackathon con la siguiente información:
+
+DATOS DEL PROYECTO:
+- Nombre del proyecto: [NOMBRE]
+- Equipo: [NOMBRES]
+- Problema: [DESCRIBE EL PROBLEMA CON DATOS]
+- Solución: [DESCRIBE LA SOLUCIÓN]
+- Tecnología: [IA + BLOCKCHAIN + STACK]
+- ODS: [ODS NÚMERO Y NOMBRE]
+- Mercado objetivo: [QUIÉN Y CUÁNTOS]
+- Modelo de negocio: [CÓMO SE SOSTIENE]
+
+El whitepaper debe tener exactamente estas secciones:
+
+1. RESUMEN EJECUTIVO (150 palabras): El problema, la solución, el impacto y por qué ahora.
+
+2. EL PROBLEMA (300 palabras): Descripción con datos reales, a quién afecta, por qué las soluciones actuales fallan. Incluye al menos 3 estadísticas citadas.
+
+3. NUESTRA SOLUCIÓN (400 palabras): Qué hace exactamente, cómo funciona, flujo del usuario paso a paso, por qué es mejor que las alternativas.
+
+4. TECNOLOGÍA (300 palabras): Arquitectura técnica, justificación del uso de IA/Blockchain, stack técnico, diagrama de flujo en texto.
+
+5. IMPACTO Y ODS (200 palabras): Cómo impacta el ODS elegido, 3 métricas medibles, proyección a 1 año.
+
+6. MODELO DE NEGOCIO (200 palabras): Cómo se financia o sostiene, canales, clientes principales.
+
+7. INVESTIGACIÓN DE MERCADO (250 palabras): Tamaño del mercado, 3 competidores con sus debilidades, nuestra ventaja diferencial.
+
+Usa lenguaje claro, párrafos cortos y datos verificables. Evita el lenguaje corporativo vacío.</div>
+      </div>
+
+      <div class="callout c-w">
+        <div class="cico">⚠️</div>
+        <div><strong>Importante:</strong> El prompt genera un borrador. Tu equipo debe revisarlo, agregar datos reales de Ecuador/Latinoamérica y personalizar con información específica de su contexto. Un whitepaper genérico se nota.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTREGABLE 1 -->
+  <div class="entregable">
+    <div class="entregable-title">📌 ENTREGABLE 1 — Viernes 22 Mayo</div>
+    <div class="eg">
+      <div class="eg-item"><div class="eg-lbl">¿Qué subes al repo?</div><div class="eg-val"><strong>/docs/whitepaper-v0.1.pdf</strong><br/>/docs/canvas.pdf<br/>README.md actualizado</div></div>
+      <div class="eg-item"><div class="eg-lbl">¿Qué presenta cada equipo?</div><div class="eg-val">Documento de propuesta (5 min): problema + ODS + solución + tecnología</div></div>
+      <div class="eg-item"><div class="eg-lbl">¿Cómo sé si está listo?</div><div class="eg-val">Completa el checklist de abajo antes de subir.</div></div>
+      <div class="eg-item"><div class="eg-lbl">¿Cuándo?</div><div class="eg-val">Antes de las <strong>18:00 del viernes 22 Mayo.</strong> El mentor debe aprobar.</div></div>
+    </div>
+    <div style="margin-top:1.1rem">
+      <div style="font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:.65rem">✅ Checklist antes de entregar</div>
+      <div class="checklist">
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Whitepaper tiene las 7 secciones y mínimo 3 páginas</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>El problema incluye al menos 3 datos o estadísticas reales citadas</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>La tecnología (IA/Blockchain) tiene uso específico justificado, no genérico</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>El ODS tiene una métrica medible de impacto</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Canvas completado con los 9 bloques (no tiene casillas vacías)</label></div>
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ El repo tiene commits de TODOS los miembros del equipo esta semana</label></div>
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ Whitepaper exportado como PDF y subido en /docs/ del repo</label></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SEMANA 2
+══════════════════════════════════════ -->
+<div class="sdiv"></div>
+<section class="week rv" id="s2">
+
+  <div class="wk-hdr wk-s2">
+    <div class="wk-num">02</div>
+    <div>
+      <div class="wk-badge bgs2">Semana 2 · 25–29 Mayo</div>
+      <div class="wk-title">Construye tu MVP con IA</div>
+      <div class="wk-sub">Vibe Coding: construye sin ser programador. Tu MVP debe estar en una URL pública el viernes.</div>
+    </div>
+  </div>
+
+  <!-- PASO 1: SETUP TÉCNICO -->
+  <div class="how-block" id="b-s2-1">
+    <div class="how-block-head" onclick="tog('b-s2-1')">
+      <div class="hb-num hb-n-s2">1</div>
+      <div class="hb-title">Elige tu stack y prepara el entorno</div>
+      <div class="hb-tag tag-herr">Herramientas</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <p style="font-size:.83rem;color:var(--mu);margin-bottom:.85rem">Elige UNA de estas tres rutas según el nivel técnico de tu equipo:</p>
+
+      <div class="tools-grid">
+        <div class="tc" style="border-color:rgba(16,185,129,.25)">
+          <div class="tc-ico">🔥</div>
+          <div class="tc-name">Ruta A — Sin código</div>
+          <div class="tc-desc">Bolt.new + Make.com + OpenAI API. Para equipos sin experiencia técnica. Funciona para la mayoría de demos.</div>
+          <a class="tc-link" href="https://bolt.new" target="_blank">→ bolt.new</a>
+          <div class="tc-free">Gratis (límite diario)</div>
+        </div>
+        <div class="tc" style="border-color:rgba(99,102,241,.25)">
+          <div class="tc-ico">⚡</div>
+          <div class="tc-name">Ruta B — Semi-técnico</div>
+          <div class="tc-desc">Cursor AI + React + Supabase. Para equipos con algo de experiencia. Cursor escribe el código mientras tú describes qué quieres.</div>
+          <a class="tc-link" href="https://cursor.sh" target="_blank">→ cursor.sh</a>
+          <div class="tc-free">14 días gratis</div>
+        </div>
+        <div class="tc" style="border-color:rgba(245,158,11,.25)">
+          <div class="tc-ico">🤖</div>
+          <div class="tc-name">Ruta C — Bot conversacional</div>
+          <div class="tc-desc">Telegram Bot + Python + Claude API + Railway deploy. Ideal para soluciones de asistencia, consultas o automatizaciones.</div>
+          <a class="tc-link" href="https://railway.app" target="_blank">→ railway.app</a>
+          <div class="tc-free">$5 crédito gratis</div>
+        </div>
+      </div>
+
+      <div class="tools-grid" style="margin-top:.75rem">
+        <div class="tc"><div class="tc-ico">🎯</div><div class="tc-name">Replit</div><div class="tc-desc">Código colaborativo en el browser. Todo el equipo puede editar a la vez.</div><a class="tc-link" href="https://replit.com" target="_blank">→ replit.com</a><div class="tc-free">Gratis</div></div>
+        <div class="tc"><div class="tc-ico">🚀</div><div class="tc-name">Vercel</div><div class="tc-desc">Deploy de tu web app en 30 segundos. URL pública instantánea.</div><a class="tc-link" href="https://vercel.com" target="_blank">→ vercel.com</a><div class="tc-free">Gratis</div></div>
+        <div class="tc"><div class="tc-ico">🌐</div><div class="tc-name">v0.dev</div><div class="tc-desc">Genera UI completa en React con solo describir en texto lo que quieres.</div><a class="tc-link" href="https://v0.dev" target="_blank">→ v0.dev</a><div class="tc-free">Gratis (límite)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 2: VIBE CODING -->
+  <div class="how-block" id="b-s2-2">
+    <div class="how-block-head" onclick="tog('b-s2-2')">
+      <div class="hb-num hb-n-s2">2</div>
+      <div class="hb-title">Construye tu MVP con Vibe Coding</div>
+      <div class="hb-tag tag-prom">Prompts listos</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="callout c-i">
+        <div class="cico">💡</div>
+        <div><strong>¿Qué es Vibe Coding?</strong> Describes en lenguaje natural lo que quieres construir y la IA genera el código. Tú diriges, la IA ejecuta. No necesitas saber programar — necesitas saber describir.</div>
+      </div>
+
+      <div class="steps" style="margin-top:.85rem">
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">Ve a bolt.new y describe tu app</div>
+            <div class="step-desc">Abre <a href="https://bolt.new" target="_blank" style="color:#6ee7b7">bolt.new</a> y usa este prompt inicial:</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Crear app completa en Bolt.new</div><button class="copy-btn" onclick="copyText(this,'p-s2-1')">Copiar</button></div>
+        <div class="pb-body" id="p-s2-1">Crea una aplicación web completa con React y Tailwind CSS para el siguiente proyecto:
+
+NOMBRE: [NOMBRE DE TU APP]
+DESCRIPCIÓN: [QUÉ HACE EN 1 ORACIÓN]
+USUARIO: [QUIÉN LA USA]
+FLUJO PRINCIPAL: [DESCRIBE LOS 3-5 PASOS QUE HACE EL USUARIO]
+
+Requisitos de diseño:
+- Diseño moderno, oscuro (dark mode), profesional
+- Responsive para mobile y desktop
+- Navegación simple e intuitiva
+- Colores: usa [TUS COLORES O ESCRIBE "colores profesionales"]
+
+Pantallas que necesito:
+1. Pantalla principal / Home con descripción del servicio
+2. [PANTALLA 2 - describe qué hace]
+3. [PANTALLA 3 - describe qué hace]
+
+Incluye datos de ejemplo (mock data) para que la demo se vea funcional.
+Agrega un botón o sección que muestre cómo se integraría la IA en el flujo.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Integrar API de IA (Claude/OpenAI)</div><button class="copy-btn" onclick="copyText(this,'p-s2-2')">Copiar</button></div>
+        <div class="pb-body" id="p-s2-2">Agrega a esta aplicación una integración con la API de [Claude/OpenAI/Gemini].
+
+La IA debe hacer lo siguiente en mi app:
+[DESCRIBE QUÉ DEBE HACER LA IA: analizar texto, responder preguntas, generar recomendaciones, etc.]
+
+Requisitos técnicos:
+- Crear un endpoint en el backend que reciba el input del usuario
+- Enviar el prompt a la API de IA con el contexto correcto
+- Mostrar la respuesta de forma clara en la interfaz
+- Manejar errores (timeout, API key inválida, etc.)
+
+El prompt del sistema que debe usar la IA es:
+"[DESCRIBE EL ROL DE LA IA: ej: Eres un asistente especializado en salud...
+Tu tarea es: [QUÉ DEBE HACER]
+Responde siempre en español y en un máximo de 3 párrafos.]"
+
+Usa la variable de entorno OPENAI_API_KEY (o ANTHROPIC_API_KEY) para la clave.</div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Resolver bugs con IA</div><button class="copy-btn" onclick="copyText(this,'p-s2-3')">Copiar</button></div>
+        <div class="pb-body" id="p-s2-3">Tengo este error en mi aplicación:
+
+ERROR: [PEGA EL ERROR EXACTO AQUÍ]
+
+Mi código relevante es:
+[PEGA EL CÓDIGO QUE ESTÁ FALLANDO]
+
+Lo que intento hacer es:
+[DESCRIBE QUÉ DEBERÍA PASAR]
+
+Por favor:
+1. Explícame por qué ocurre este error en términos simples
+2. Dame el código corregido completo
+3. Dime si hay otros problemas potenciales en este código que deba anticipar</div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">✅ Ejemplo — MVP mínimo que convence</div>
+        <div class="ex-content">
+          Un buen MVP para hackathon tiene <strong>1 sola función que funciona perfectamente</strong>, no 10 funciones que fallan a medias.<br/><br/>
+          <strong>Ejemplo:</strong> Si tu app conecta agricultores con compradores usando IA:<br/>
+          → Un formulario donde el agricultor describe su cosecha<br/>
+          → La IA analiza y sugiere el precio justo de mercado<br/>
+          → Una pantalla de resultado con la recomendación<br/><br/>
+          Eso es suficiente para la demo. No necesitas login, pagos, mapa, chat, notificaciones ni perfil de usuario.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 3: DEPLOY -->
+  <div class="how-block" id="b-s2-3">
+    <div class="how-block-head" onclick="tog('b-s2-3')">
+      <div class="hb-num hb-n-s2">3</div>
+      <div class="hb-title">Despliega tu MVP en una URL pública</div>
+      <div class="hb-tag tag-paso">Paso a paso</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="steps">
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">Opción más rápida: Vercel (recomendado)</div>
+            <div class="step-desc">
+              1. Ve a <a href="https://vercel.com" target="_blank" style="color:#6ee7b7">vercel.com</a> → "Log in with GitHub"<br/>
+              2. "New Project" → selecciona tu repositorio de GitHub<br/>
+              3. Clic en "Deploy" — listo en 60 segundos<br/>
+              4. Vercel te da una URL como: <strong>tu-proyecto.vercel.app</strong><br/>
+              5. Pega esa URL en el README de tu repo
+            </div>
+          </div>
+        </div>
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">¿Tienes variables de entorno (API keys)?</div>
+            <div class="step-desc">
+              En Vercel: Settings → Environment Variables → agrega tu OPENAI_API_KEY o ANTHROPIC_API_KEY.<br/>
+              <strong>Nunca pongas tu API key directamente en el código.</strong> El repo es público — cualquiera puede verlo y usarla.
+            </div>
+          </div>
+        </div>
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">Verifica que funciona desde otro dispositivo</div>
+            <div class="step-desc">Abre la URL desde tu celular. ¿Carga? ¿Funciona la IA? ¿Se ve bien? Si falla en mobile, no está listo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout c-w">
+        <div class="cico">⚠️</div>
+        <div><strong>Plan B obligatorio:</strong> Graba un video de la app funcionando en tu computadora. Si el internet falla el día de la demo, tienes ese video como respaldo. Más vale prevenir.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4: VIDEO DEMO -->
+  <div class="how-block" id="b-s2-4">
+    <div class="how-block-head" onclick="tog('b-s2-4')">
+      <div class="hb-num hb-n-s2">4</div>
+      <div class="hb-title">Graba el video demo de 2 minutos</div>
+      <div class="hb-tag tag-paso">Paso a paso</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="tools-grid">
+        <div class="tc"><div class="tc-ico">🎬</div><div class="tc-name">Loom</div><div class="tc-desc">Graba pantalla + cámara simultáneamente. Genera un link instantáneo.</div><a class="tc-link" href="https://loom.com" target="_blank">→ loom.com</a><div class="tc-free">Gratis</div></div>
+        <div class="tc"><div class="tc-ico">📹</div><div class="tc-name">OBS Studio</div><div class="tc-desc">Grabación profesional de pantalla. Mayor control que Loom.</div><a class="tc-link" href="https://obsproject.com" target="_blank">→ obsproject.com</a><div class="tc-free">Gratis</div></div>
+        <div class="tc"><div class="tc-ico">✂️</div><div class="tc-name">CapCut / DaVinci</div><div class="tc-desc">Edición rápida. Agrega subtítulos y cortes.</div><a class="tc-link" href="https://capcut.com" target="_blank">→ capcut.com</a><div class="tc-free">Gratis</div></div>
+      </div>
+
+      <p style="font-size:.85rem;font-weight:700;color:var(--wh);margin:1rem 0 .5rem">Guión exacto para los 2 minutos:</p>
+
+      <div class="steps">
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">0:00 – 0:20 · El problema en 1 golpe</div>
+            <div class="step-desc">Di el dato más impactante que tienes. Ejemplo: <em>"En Ecuador, 400.000 personas no tienen acceso a diagnóstico temprano de diabetes. Nosotros cambiamos eso."</em></div>
+          </div>
+        </div>
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">0:20 – 0:45 · Muestra la pantalla principal</div>
+            <div class="step-desc">Abre la app. Di en voz alta qué ven. "Esta es [NOMBRE]. Aquí el usuario puede [ACCIÓN PRINCIPAL]."</div>
+          </div>
+        </div>
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">0:45 – 1:30 · El momento WOW — la IA en acción</div>
+            <div class="step-desc">Usa la función de IA en vivo. Escribe un input real → muestra la respuesta. Di: <em>"Esto es lo que hace nuestra IA en tiempo real."</em> Este es el momento más importante del video.</div>
+          </div>
+        </div>
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">1:30 – 1:50 · Impacto ODS</div>
+            <div class="step-desc">Muestra o di la métrica de impacto. Ejemplo: <em>"Con 1.000 usuarios activos, evitamos 300 hospitalizaciones al año — ODS 3."</em></div>
+          </div>
+        </div>
+        <div class="step step-s2">
+          <div class="step-content">
+            <div class="step-title">1:50 – 2:00 · Cierre con nombre del equipo</div>
+            <div class="step-desc">Miren a la cámara si está activada. Di: <em>"Somos [NOMBRE EQUIPO] y esto es [NOMBRE APP]. Construido en Eight Academy Hackathon 2026."</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout c-t">
+        <div class="cico">💡</div>
+        <div><strong>Tip:</strong> Ensaya 3 veces antes de grabar. El primer take siempre es malo. Graba en un lugar silencioso con buena iluminación. Si ves tu cara borrosa o escuchas ruido de fondo, vuelve a grabar.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTREGABLE 2 -->
+  <div class="entregable">
+    <div class="entregable-title">📌 ENTREGABLE 2 — Viernes 29 Mayo</div>
+    <div class="eg">
+      <div class="eg-item"><div class="eg-lbl">MVP funcional</div><div class="eg-val"><strong>URL pública</strong> pegada en el README. El mentor prueba la app sin que le expliques nada.</div></div>
+      <div class="eg-item"><div class="eg-lbl">Video demo</div><div class="eg-val"><strong>2 min exactos.</strong> Link de YouTube o Drive en el README. Sigue el guión de 5 bloques.</div></div>
+      <div class="eg-item"><div class="eg-lbl">Repo actualizado</div><div class="eg-val">Commits diarios de toda la semana. Sin commits = evidencia de trabajo = cero.</div></div>
+      <div class="eg-item"><div class="eg-lbl">PPT v0.1</div><div class="eg-val">Mínimo 5 slides: problema · solución · demo screenshot · impacto ODS · equipo.</div></div>
+    </div>
+    <div style="margin-top:1.1rem">
+      <div style="font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:.65rem">✅ Checklist antes de entregar</div>
+      <div class="checklist">
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>El MVP tiene URL pública y carga sin errores</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>La función de IA está visible y funciona en la demo</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>El video dura exactamente 2 min (±15 segundos)</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>El link del video está en el README</label></div>
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ NO hay API keys hardcodeadas en el código del repo</label></div>
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ El repo tiene al menos 5 commits distintos esta semana</label></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SEMANA 3
+══════════════════════════════════════ -->
+<div class="sdiv"></div>
+<section class="week rv" id="s3">
+
+  <div class="wk-hdr wk-s3">
+    <div class="wk-num">03</div>
+    <div>
+      <div class="wk-badge bgs3">Semana 3 · 1–5 Junio</div>
+      <div class="wk-title">Pitch, Infografía y Pre-defensa</div>
+      <div class="wk-sub">De "tenemos algo que funciona" a "tenemos algo que vende". El miércoles 3 Jun define el Top 20.</div>
+    </div>
+  </div>
+
+  <!-- PASO 1: PITCH DECK -->
+  <div class="how-block" id="b-s3-1">
+    <div class="how-block-head" onclick="tog('b-s3-1')">
+      <div class="hb-num hb-n-s3">1</div>
+      <div class="hb-title">Construye el Pitch Deck (8 slides)</div>
+      <div class="hb-tag tag-prom">Prompts listos</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="tools-grid">
+        <div class="tc"><div class="tc-ico">🎨</div><div class="tc-name">Canva</div><div class="tc-desc">Templates de pitch deck profesionales. El más rápido para equipos sin diseño.</div><a class="tc-link" href="https://canva.com" target="_blank">→ canva.com/presentations</a><div class="tc-free">Gratis</div></div>
+        <div class="tc"><div class="tc-ico">📊</div><div class="tc-name">Google Slides</div><div class="tc-desc">Colaboración en tiempo real. Recomendado para editar entre varios.</div><a class="tc-link" href="https://slides.google.com" target="_blank">→ slides.google.com</a><div class="tc-free">Gratis</div></div>
+        <div class="tc"><div class="tc-ico">✨</div><div class="tc-name">Gamma.app</div><div class="tc-desc">Genera presentaciones enteras con IA. Solo describes el contenido.</div><a class="tc-link" href="https://gamma.app" target="_blank">→ gamma.app</a><div class="tc-free">Gratis (límite)</div></div>
+      </div>
+
+      <div class="prompt-box" style="margin-top:.85rem">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Generar contenido de las 8 slides</div><button class="copy-btn" onclick="copyText(this,'p-s3-1')">Copiar</button></div>
+        <div class="pb-body" id="p-s3-1">Soy estudiante de hackathon. Necesito el contenido exacto para un pitch deck de 8 slides para presentar ante un jurado en 3 minutos.
+
+MI PROYECTO:
+- Nombre: [NOMBRE]
+- Equipo: [NOMBRES, ROLES]
+- Problema: [DESCRIBE CON DATOS]
+- Solución: [QUÉ HACE]
+- Tecnología: [IA + STACK]
+- ODS: [NÚMERO Y NOMBRE]
+- Impacto: [MÉTRICA CLAVE]
+- URL del MVP: [URL]
+
+Genera el texto exacto para cada slide:
+
+SLIDE 1 — PORTADA: [título impactante] + tagline de 1 oración + nombres del equipo
+SLIDE 2 — EL PROBLEMA: título llamativo + 1 dato estadístico impactante + descripción del afectado en 2 líneas
+SLIDE 3 — NUESTRA SOLUCIÓN: título + descripción en 1 oración + 3 bullets de beneficios clave
+SLIDE 4 — DEMO: título + instrucciones de qué mostrar en vivo + 1 screenshot caption
+SLIDE 5 — CÓMO FUNCIONA LA IA: título + flujo en 3 pasos (Usuario→IA→Resultado) en bullets simples
+SLIDE 6 — IMPACTO ODS: título + ODS número y nombre + 3 métricas cuantificables
+SLIDE 7 — MODELO Y VIABILIDAD: título + cómo se sostiene en 3 bullets + quién pagaría o financiaría
+SLIDE 8 — EQUIPO + SIGUIENTE PASO: fotos/iconos + roles + "Nuestro próximo paso es [X]"
+
+Hazlo conciso. Máximo 20 palabras por bullet. El jurado lee en 3 segundos por slide.</div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">✅ Reglas de diseño del pitch deck</div>
+        <div class="ex-content">
+          <strong>1 idea por slide.</strong> Si tienes 2 ideas, son 2 slides.<br/>
+          <strong>Máximo 30 palabras de texto por slide.</strong> Si hay más, el jurado lee en vez de escucharte.<br/>
+          <strong>1 imagen grande > 10 bullets pequeños.</strong> Usa fotos reales del problema o screenshots reales del MVP.<br/>
+          <strong>Colores consistentes.</strong> Elige 2 colores y úsalos en todo. Canva hace esto automático con sus templates.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 2: SPEECH -->
+  <div class="how-block" id="b-s3-2">
+    <div class="how-block-head" onclick="tog('b-s3-2')">
+      <div class="hb-num hb-n-s3">2</div>
+      <div class="hb-title">Escribe y ensaya el speech de 3 minutos</div>
+      <div class="hb-tag tag-prom">Prompts listos</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Escribir el speech completo de 3 min</div><button class="copy-btn" onclick="copyText(this,'p-s3-2')">Copiar</button></div>
+        <div class="pb-body" id="p-s3-2">Actúa como coach de pitch y comunicación para startups.
+
+Escríbeme un speech de presentación de exactamente 3 minutos (aproximadamente 450 palabras habladas) para mi proyecto de hackathon.
+
+DATOS:
+- Proyecto: [NOMBRE]
+- Problema: [DESCRIBE]
+- Solución: [DESCRIBE]
+- Demo: [QUÉ MOSTRARÁS EN VIVO]
+- ODS: [NÚMERO Y NOMBRE]
+- Impacto clave: [TU MÉTRICA PRINCIPAL]
+- Equipo: [NOMBRES]
+
+ESTRUCTURA OBLIGATORIA:
+
+[0:00-0:30] HOOK — Empieza con la historia de UNA persona real que sufre el problema. No datos todavía — emoción. Hazlo visual y específico.
+
+[0:30-1:00] EL PROBLEMA — Presenta el dato más impactante. Explica por qué las soluciones actuales fallan en 2 oraciones.
+
+[1:00-1:45] LA SOLUCIÓN + DEMO — Presenta la app y anuncia que vas a mostrarla en vivo. Describe lo que el jurado verá mientras navegas.
+
+[1:45-2:15] LA IA EN ACCIÓN — Explica en términos simples qué hace la IA y por qué es el diferenciador.
+
+[2:15-2:45] IMPACTO — ODS + métrica + escala potencial.
+
+[2:45-3:00] CIERRE — Llamado a la acción + nombre del equipo memorable.
+
+Usa lenguaje natural y conversacional, no corporativo. Como si hablaras con amigos inteligentes. Incluye las indicaciones [NAVEGAR APP] [MOSTRAR RESULTADO] en el momento correcto.</div>
+      </div>
+
+      <div class="steps" style="margin-top:.85rem">
+        <div class="step step-s3">
+          <div class="step-content">
+            <div class="step-title">Ensayo 1 — Solo, con cronómetro</div>
+            <div class="step-desc">Lee el speech en voz alta con cronómetro. ¿Dura 3 min? Si dura más, corta. Si dura menos, agrega detalles. <strong>Regla: si te pasas 10 segundos en un hackathon, el jurado ya está distraído.</strong></div>
+          </div>
+        </div>
+        <div class="step step-s3">
+          <div class="step-content">
+            <div class="step-title">Ensayo 2 — Con Loom grabado</div>
+            <div class="step-desc">Grábate con Loom haciendo el pitch completo. Vélo después. ¿Dices "ehhh" mucho? ¿Ves la pantalla en vez de hablar al jurado? ¿Vas demasiado rápido? Corrígelo.</div>
+          </div>
+        </div>
+        <div class="step step-s3">
+          <div class="step-content">
+            <div class="step-title">Ensayo 3 — Frente a tu mentor</div>
+            <div class="step-desc">Pitch completo sin interrupciones. El mentor hace preguntas difíciles después. Prepara respuestas para: "¿Por qué la IA y no un algoritmo simple?" · "¿Quién pagaría por esto?" · "¿Qué hacen sus competidores?"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 3: INFOGRAFÍA -->
+  <div class="how-block" id="b-s3-3">
+    <div class="how-block-head" onclick="tog('b-s3-3')">
+      <div class="hb-num hb-n-s3">3</div>
+      <div class="hb-title">Diseña la Infografía del proyecto</div>
+      <div class="hb-tag tag-prom">Prompts listos</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <p style="font-size:.83rem;color:var(--mu);margin-bottom:.85rem">La infografía cuenta la historia completa de tu proyecto en 1 sola imagen. Formato horizontal (16:9) o vertical (poster). Usa Canva — tienen templates de infografía listos.</p>
+
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Definir estructura de la infografía</div><button class="copy-btn" onclick="copyText(this,'p-s3-3')">Copiar</button></div>
+        <div class="pb-body" id="p-s3-3">Soy diseñador sin experiencia avanzada. Necesito crear una infografía para mi proyecto de hackathon que cuente toda la historia visualmente.
+
+MI PROYECTO: [NOMBRE + DESCRIPCIÓN BREVE]
+
+Dame la estructura exacta de la infografía con:
+
+1. SECCIÓN HEADER: título del proyecto + tagline de 1 oración + ODS badge
+2. SECCIÓN PROBLEMA: 1 estadística visual impactante + ícono representativo
+3. SECCIÓN SOLUCIÓN: flujo visual de 3-4 pasos (Problema → App → IA → Resultado)
+4. SECCIÓN TECNOLOGÍA: lista visual de herramientas (ícono + nombre)
+5. SECCIÓN IMPACTO: 3 métricas en tarjetas grandes (número + descripción)
+6. SECCIÓN EQUIPO: nombres + roles en íconos de personas
+7. FOOTER: nombre del equipo + hackathon + QR code (link al MVP)
+
+Para cada sección dame:
+- El texto exacto a poner (máximo 10 palabras por elemento)
+- El color de fondo sugerido
+- El ícono o imagen recomendada
+- El tamaño relativo de la sección
+
+Hazlo para que se vea profesional incluso en Canva con plantillas estándar.</div>
+      </div>
+
+      <div class="callout c-t">
+        <div class="cico">💡</div>
+        <div><strong>Tip de Canva:</strong> Busca "infografía tecnología" en los templates de Canva. Elige uno oscuro y moderno. Cambia solo los colores, textos e íconos — no el layout. Toma 30 min si sigues la estructura del prompt.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4: WHITEPAPER V1.0 -->
+  <div class="how-block" id="b-s3-4">
+    <div class="how-block-head" onclick="tog('b-s3-4')">
+      <div class="hb-num hb-n-s3">4</div>
+      <div class="hb-title">Actualiza a Whitepaper v1.0</div>
+      <div class="hb-tag tag-prom">Prompts listos</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="prompt-box">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Actualizar Whitepaper a v1.0</div><button class="copy-btn" onclick="copyText(this,'p-s3-4')">Copiar</button></div>
+        <div class="pb-body" id="p-s3-4">Tengo el Whitepaper v0.1 de mi proyecto de hackathon. Necesito actualizarlo a v1.0 incorporando lo que aprendimos durante el desarrollo.
+
+WHITEPAPER v0.1: [PEGA EL TEXTO COMPLETO O DESCRIBE EL CONTENIDO]
+
+NUEVAS SECCIONES A AGREGAR:
+
+8. DESARROLLO Y APRENDIZAJES (300 palabras):
+   - Qué construimos exactamente (describe el MVP)
+   - Desafíos técnicos que enfrentamos y cómo los resolvimos
+   - Decisiones de diseño tomadas y por qué
+   - URL del MVP en producción
+
+9. VALIDACIÓN CON USUARIOS (200 palabras):
+   [Si hicieron pruebas con usuarios reales, descríbelas]
+   [Si no, describe el perfil del usuario ideal y qué hipótesis validaría una prueba]
+
+10. ROADMAP SIGUIENTE FASE (150 palabras):
+    - 3 features que agregarían en los próximos 3 meses
+    - Cómo escalarían a más usuarios
+    - Qué financiamiento o alianzas buscarían
+
+También actualiza las secciones existentes con:
+- Datos reales del MVP (no proyecciones)
+- Screenshots o descripción del producto real
+- Correcciones de cualquier hipótesis que cambió durante el desarrollo
+
+Mantén el mismo tono profesional y párrafos cortos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTREGABLE 3 -->
+  <div class="entregable">
+    <div class="entregable-title">📌 ENTREGABLE 3 — Miércoles 03 Junio · Define el Top 20</div>
+    <div class="eg">
+      <div class="eg-item"><div class="eg-lbl">Pitch deck final</div><div class="eg-val"><strong>8 slides mínimo.</strong> PDF subido al repo + link en README. El equipo presenta en vivo 5 min.</div></div>
+      <div class="eg-item"><div class="eg-lbl">Whitepaper v1.0</div><div class="eg-val">Mínimo 8 páginas con las 10 secciones. <strong>PDF en /docs/whitepaper-v1.0.pdf</strong></div></div>
+      <div class="eg-item"><div class="eg-lbl">Infografía</div><div class="eg-val">1 imagen de alta resolución. <strong>/assets/infografia.png</strong> en el repo.</div></div>
+      <div class="eg-item"><div class="eg-lbl">Repo final</div><div class="eg-val">README actualizado con todos los links. Código comentado. Sin commits pendientes.</div></div>
+    </div>
+    <div style="margin-top:1.1rem">
+      <div style="font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:.65rem">✅ Checklist antes de entregar</div>
+      <div class="checklist">
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Pitch deck tiene 8+ slides con diseño profesional (no plantilla en blanco)</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Whitepaper v1.0 tiene 8+ páginas y las 10 secciones</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Infografía exportada en alta resolución (mínimo 1920px de ancho)</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>MVP sigue funcionando y la URL no ha cambiado</label></div>
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ El speech de 3 minutos fue ensayado al menos 3 veces con cronómetro</label></div>
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ El equipo tiene preparadas respuestas para 5 preguntas difíciles del jurado</label></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     GRAN FINAL
+══════════════════════════════════════ -->
+<div class="sdiv"></div>
+<section class="week rv" id="final">
+
+  <div class="wk-hdr" style="background:linear-gradient(135deg,rgba(239,68,68,.1),transparent);border-color:rgba(239,68,68,.2)">
+    <div class="wk-num" style="color:var(--fin)">🏆</div>
+    <div>
+      <div class="wk-badge bgfin">Gran Final · Sábado 06 Junio</div>
+      <div class="wk-title">Pitch & Defense ante el jurado</div>
+      <div class="wk-sub">Solo para el Top 20. 3 minutos para convencer. Todo lo demás ya lo construiste.</div>
+    </div>
+  </div>
+
+  <!-- PREP DEL DÍA ANTERIOR -->
+  <div class="how-block" id="b-fin-1">
+    <div class="how-block-head" onclick="tog('b-fin-1')">
+      <div class="hb-num hb-n-fin">1</div>
+      <div class="hb-title">Checklist del viernes — la noche antes</div>
+      <div class="hb-tag tag-check">Checklist</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="checklist">
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ Pitch deck subido a Google Slides (no PowerPoint local — puede fallar)</label></div>
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ Video de respaldo grabado (1 min mostrando el MVP funcionando)</label></div>
+        <div class="ci critical" onclick="toggleCheck(this)"><input type="checkbox"/><label>⚠️ MVP funcionando con datos de demo listos para no depender de internet lento</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Adaptador HDMI / cable para conectar al proyector del evento</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Cargador del laptop cargado al 100%</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Todos los integrantes confirmados para el sábado con hora de llegada</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Ensayo final completo del pitch de 3 min — esta noche, una vez más</label></div>
+        <div class="ci" onclick="toggleCheck(this)"><input type="checkbox"/><label>Respuestas preparadas para estas 5 preguntas difíciles (ver abajo)</label></div>
+      </div>
+
+      <div class="prompt-box" style="margin-top:.85rem">
+        <div class="pb-head"><div class="pb-label">🤖 Prompt — Preparar respuestas a preguntas difíciles</div><button class="copy-btn" onclick="copyText(this,'p-fin-1')">Copiar</button></div>
+        <div class="pb-body" id="p-fin-1">Soy participante en la Gran Final de un hackathon. Mañana presento mi proyecto ante un jurado experto.
+
+MI PROYECTO: [NOMBRE + DESCRIPCIÓN BREVE]
+
+Prepara respuestas concisas (máximo 3 oraciones cada una) para estas 5 preguntas difíciles que podría hacer el jurado:
+
+1. "¿Por qué necesitan IA para esto? ¿No se puede hacer con un algoritmo simple?"
+
+2. "¿Quién pagaría por esto y cuánto? ¿Cuál es el modelo de negocio real?"
+
+3. "¿Qué hace su solución que no puedan hacer las que ya existen?"
+
+4. "¿Cuántos usuarios reales han probado esto? ¿Qué feedback recibieron?"
+
+5. "Si les diéramos $50,000 hoy, ¿qué harían exactamente en los próximos 6 meses?"
+
+Para cada respuesta: sé honesto sobre las limitaciones (el jurado respeta más la honestidad que la exageración) y termina con un punto positivo y concreto.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÍA DEL EVENTO -->
+  <div class="how-block" id="b-fin-2">
+    <div class="how-block-head" onclick="tog('b-fin-2')">
+      <div class="hb-num hb-n-fin">2</div>
+      <div class="hb-title">El día del evento — minuto a minuto</div>
+      <div class="hb-tag tag-paso">Paso a paso</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div class="steps">
+        <div class="step step-fin">
+          <div class="step-content">
+            <div class="step-title">Llega 30 min antes</div>
+            <div class="step-desc">Prueba el proyector con tu laptop. Verifica que el internet del venue funciona con tu demo. Si no funciona, activa el hotspot de tu celular como backup. Ten el video de respaldo abierto en una pestaña.</div>
+          </div>
+        </div>
+        <div class="step step-fin">
+          <div class="step-content">
+            <div class="step-title">Antes de subir al escenario</div>
+            <div class="step-desc">Respiración profunda. Di en voz baja tu primera oración 3 veces. El nerviosismo es normal — la adrenalina te hace más sharp, no peor. El jurado quiere que te vaya bien.</div>
+          </div>
+        </div>
+        <div class="step step-fin">
+          <div class="step-content">
+            <div class="step-title">Durante el pitch — las 3 reglas</div>
+            <div class="step-desc">
+              <strong>1. Habla al jurado, no a la pantalla.</strong> Si miras el proyector, el jurado pierde conexión contigo.<br/>
+              <strong>2. Si algo falla técnicamente, di "plan B" y abre el video de respaldo.</strong> No te disculpes 5 veces — solo sigue.<br/>
+              <strong>3. Respeta los 3 minutos.</strong> Si te avisan el tiempo, termina en la siguiente oración completa.
+            </div>
+          </div>
+        </div>
+        <div class="step step-fin">
+          <div class="step-content">
+            <div class="step-title">Durante las preguntas del jurado</div>
+            <div class="step-desc">Escucha la pregunta completa antes de responder. Si no sabes la respuesta, di: <em>"No lo hemos medido todavía, pero nuestra hipótesis es [X]."</em> Es más valioso que inventar una respuesta falsa.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRITERIOS DE EVALUACIÓN -->
+  <div class="how-block" id="b-fin-3">
+    <div class="how-block-head" onclick="tog('b-fin-3')">
+      <div class="hb-num hb-n-fin">3</div>
+      <div class="hb-title">Así te evalúa el jurado</div>
+      <div class="hb-tag tag-check">Rúbrica oficial</div>
+      <div class="tog">▼</div>
+    </div>
+    <div class="how-body">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem">
+        <div style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:14px;padding:1.1rem">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--wh),#fca5a5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1">25%</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--wh);margin:.4rem 0 .25rem">Innovación e Impacto</div>
+          <div style="font-size:.76rem;color:var(--mu);line-height:1.6">¿El problema es real y relevante? ¿La solución es genuinamente nueva? ¿El impacto potencial es significativo?</div>
+        </div>
+        <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.18);border-radius:14px;padding:1.1rem">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--wh),#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1">25%</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--wh);margin:.4rem 0 .25rem">Calidad Técnica del MVP</div>
+          <div style="font-size:.76rem;color:var(--mu);line-height:1.6">¿La IA/Blockchain se usa de forma real y funcional? ¿El MVP funciona en vivo? ¿El código es accesible?</div>
+        </div>
+        <div style="background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.18);border-radius:14px;padding:1.1rem">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--wh),#fcd34d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1">20%</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--wh);margin:.4rem 0 .25rem">Pitch y Comunicación</div>
+          <div style="font-size:.76rem;color:var(--mu);line-height:1.6">¿El speech es claro y convincente en 3 min? ¿El equipo responde bien las preguntas? ¿El deck es profesional?</div>
+        </div>
+        <div style="background:rgba(99,102,241,.05);border:1px solid rgba(99,102,241,.18);border-radius:14px;padding:1.1rem">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--wh),#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1">30%</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--wh);margin:.4rem 0 .25rem">ODS + Modelo + Documentación</div>
+          <div style="font-size:.76rem;color:var(--mu);line-height:1.6">¿El ODS tiene métricas reales? ¿El modelo es viable? ¿El repo tiene historial de commits y README completo?</div>
+        </div>
+      </div>
+
+      <div class="callout c-i" style="margin-top:1rem">
+        <div class="cico">🏆</div>
+        <div><strong>El secreto de los equipos que ganan:</strong> No son los más técnicos ni los que tienen la app más bonita. Son los que cuentan la mejor historia y muestran el impacto más claro. Tecnología + Narrativa + Documentación = ganadores.</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="sdiv"></div>
+<footer>
+  <p>🏆 <strong>Eight Academy · Hackathon 2026</strong> · How To — Manual del Participante</p>
+  <p>Elaborado por <strong>TonyCross IA</strong> · Mayo 2026</p>
+  <p><a href="guia-mentor.html" style="color:#a5b4fc;text-decoration:none">→ Ver Guía del Mentor</a></p>
+</footer>
+
+<script>
+// PROGRESS BAR
+const bar=document.getElementById('bar');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  bar.style.width=(window.scrollY/h*100)+'%';
+},{passive:true});
+
+// REVEAL
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}});},{threshold:.06});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// TOGGLE BLOCKS
+function tog(id){document.getElementById(id).classList.toggle('collapsed')}
+
+// ACTIVE NAV
+const secs=document.querySelectorAll('section[id]');
+const nls=document.querySelectorAll('.nt');
+const no=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){nls.forEach(l=>l.classList.remove('on'));const a=document.querySelector(`.nt[href="#${x.target.id}"]`);if(a)a.classList.add('on');}});},{threshold:.25});
+secs.forEach(s=>no.observe(s));
+
+// COPY PROMPT
+function copyText(btn, id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  navigator.clipboard.writeText(el.innerText||el.textContent).then(()=>{
+    btn.textContent='✓ Copiado';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('copied');},2000);
+  }).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=el.innerText;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    btn.textContent='✓ Copiado';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('copied');},2000);
+  });
+}
+
+// INTERACTIVE CHECKLIST
+function toggleCheck(div){
+  const cb=div.querySelector('input[type=checkbox]');
+  cb.checked=!cb.checked;
+  div.classList.toggle('done',cb.checked);
+}
+</script>
+</body>
+</html>
