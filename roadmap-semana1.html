@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap Semana 1 · Hackathon Eight Academy 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary:    #0a0a0f;
+      --bg-secondary:  #12121a;
+      --bg-card:       #1a1a2e;
+      --bg-card-hover: #222240;
+      --text-primary:  #f0f0f5;
+      --text-secondary:#8888aa;
+      --accent-blue:   #4f7cff;
+      --accent-cyan:   #00e5ff;
+      --accent-purple: #a855f7;
+      --accent-green:  #10b981;
+      --accent-orange: #ff6b35;
+      --border:        rgba(255,255,255,0.08);
+      --border-mid:    rgba(255,255,255,0.14);
+      --radius-lg:     14px;
+      --radius-md:     9px;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top:0; z-index:100;
+      background: rgba(10,10,15,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; gap: 1rem;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      background: linear-gradient(135deg, #4f7cff, #00e5ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-sep { color: var(--border-mid); font-size: .8rem; }
+    .nav-title { font-size: .85rem; color: var(--text-secondary); }
+    .nav-back {
+      margin-left: auto; font-size: .8rem; color: var(--text-secondary);
+      text-decoration: none; padding: 5px 12px;
+      border: 1px solid var(--border); border-radius: 999px;
+      transition: all .2s;
+    }
+    .nav-back:hover { color: var(--text-primary); border-color: var(--border-mid); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 3.5rem 2rem 2rem;
+      max-width: 780px; margin: 0 auto;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .72rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent-cyan);
+      background: rgba(0,229,255,.08); border: 1px solid rgba(0,229,255,.18);
+      border-radius: 999px; padding: 4px 12px; margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 800; line-height: 1.15;
+      margin-bottom: .6rem;
+    }
+    .hero h1 em { font-style: normal;
+      background: linear-gradient(135deg, #4f7cff, #00e5ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--text-secondary); font-size: .95rem; line-height: 1.6; max-width: 560px; }
+
+    /* ── MAIN CONTAINER ── */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+    /* ── TEAM INPUT ── */
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.75rem;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .team-card label { font-size: .83rem; color: var(--text-secondary); white-space: nowrap; }
+    .team-card input {
+      flex: 1; min-width: 180px; max-width: 260px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-mid); border-radius: 8px;
+      color: var(--text-primary); font-family: inherit; font-size: .85rem;
+      padding: 7px 12px; outline: none; transition: border-color .2s;
+    }
+    .team-card input:focus { border-color: var(--accent-blue); }
+    .team-card input::placeholder { color: var(--text-secondary); }
+    .btn {
+      font-family: inherit; font-size: .82rem; font-weight: 600;
+      cursor: pointer; border: none; border-radius: 8px;
+      padding: 7px 16px; transition: all .2s;
+    }
+    .btn-primary { background: var(--accent-blue); color: #fff; }
+    .btn-primary:hover { background: #3d6aee; }
+    .btn-ghost {
+      background: transparent; color: var(--text-secondary);
+      border: 1px solid var(--border-mid);
+    }
+    .btn-ghost:hover { color: var(--text-primary); border-color: var(--border-mid); }
+    .team-indicator {
+      margin-left: auto; font-size: .78rem; color: var(--accent-cyan);
+      background: rgba(0,229,255,.08); border: 1px solid rgba(0,229,255,.18);
+      border-radius: 999px; padding: 3px 10px; display: none;
+    }
+    .team-indicator.show { display: block; }
+
+    /* ── PROGRESS ── */
+    .progress-wrap { margin-bottom: 2rem; }
+    .progress-bar-bg {
+      background: var(--bg-secondary); border-radius: 999px;
+      height: 8px; overflow: hidden; margin-bottom: 6px;
+    }
+    .progress-bar {
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      height: 100%; width: 0%; border-radius: 999px;
+      transition: width .5s cubic-bezier(.22,1,.36,1);
+    }
+    .progress-label {
+      font-size: .78rem; color: var(--text-secondary);
+      display: flex; justify-content: space-between;
+    }
+    .progress-pct { color: var(--accent-cyan); font-weight: 600; }
+
+    /* ── TIMELINE ── */
+    .timeline { list-style: none; position: relative; padding-left: 36px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 13px; top: 10px; bottom: 10px;
+      width: 2px; background: var(--border); border-radius: 2px;
+    }
+
+    /* ── STEP ── */
+    .step {
+      position: relative; margin-bottom: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      transition: border-color .2s, background .2s;
+    }
+    .step:hover { border-color: var(--border-mid); }
+    .step.done { background: rgba(16,185,129,.04); border-color: rgba(16,185,129,.3); }
+
+    /* node */
+    .step::before {
+      content: attr(data-num);
+      position: absolute; left: -36px; top: 13px;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--bg-secondary); border: 1px solid var(--border-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600; color: var(--text-secondary);
+    }
+    .step.done::before {
+      content: '✓'; background: var(--accent-green);
+      border-color: var(--accent-green); color: #fff; font-size: 13px;
+    }
+
+    .step-head { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+
+    /* checkbox */
+    .step-check {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 1.5px solid var(--border-mid); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-secondary); margin-top: 1px;
+      transition: all .15s; cursor: pointer; user-select: none;
+    }
+    .step-check:hover { border-color: var(--accent-green); }
+    .step.done .step-check { background: var(--accent-green); border-color: var(--accent-green); }
+    .step-check-ico { color: #fff; font-size: 13px; opacity: 0; }
+    .step.done .step-check-ico { opacity: 1; }
+
+    .step-info { flex: 1; min-width: 0; }
+    .step-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
+    .step-title { font-size: .95rem; font-weight: 600; }
+    .step.done .step-title { text-decoration: line-through; color: var(--text-secondary); }
+
+    .badge {
+      font-size: .68rem; padding: 2px 9px; border-radius: 999px; font-weight: 600;
+    }
+    .badge-doc { background: rgba(79,124,255,.15); color: #7fa0ff; }
+    .badge-design { background: rgba(255,107,53,.15); color: #ff9a78; }
+
+    .step-desc { font-size: .82rem; color: var(--text-secondary); line-height: 1.5; }
+
+    .step-toggle {
+      background: transparent; border: none; cursor: pointer;
+      color: var(--text-secondary); padding: 4px; font-size: 1.1rem;
+      flex-shrink: 0; transition: transform .2s, color .2s; line-height: 1;
+    }
+    .step-toggle:hover { color: var(--text-primary); }
+    .step.open .step-toggle { transform: rotate(180deg); }
+
+    /* body */
+    .step-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    .step.open .step-body { max-height: 700px; }
+    .step-body-inner {
+      margin-top: 12px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* sub-checklist */
+    .sub-list { list-style: none; margin: 0 0 14px; }
+    .sub-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 6px 0; font-size: .83rem; border-bottom: 1px solid var(--border);
+    }
+    .sub-item:last-child { border-bottom: none; }
+    .sub-item input[type=checkbox] { margin-top: 2px; cursor: pointer; flex-shrink: 0; accent-color: var(--accent-green); }
+    .sub-item label { cursor: pointer; flex: 1; color: var(--text-primary); line-height: 1.5; }
+    .sub-item.checked label { text-decoration: line-through; color: var(--text-secondary); }
+
+    .tip {
+      font-size: .78rem; color: var(--text-secondary);
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      padding: 9px 12px; border-radius: var(--radius-md);
+      line-height: 1.55;
+    }
+    .tip strong { color: var(--text-primary); font-weight: 600; }
+
+    /* ── CELEBRATION ── */
+    .celebration {
+      display: none; margin-top: 1.5rem;
+      background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.3);
+      border-radius: var(--radius-lg); padding: 1.25rem 1.5rem;
+      text-align: center; color: var(--accent-green); font-size: .95rem; font-weight: 600;
+    }
+    .celebration.show { display: block; }
+    .celebration span { font-size: 1.5rem; display: block; margin-bottom: .4rem; }
+
+    /* ── FOOTER ACTIONS ── */
+    .footer-actions {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-top: 1.75rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .hero { padding: 2rem 1.25rem 1rem; }
+      .container { padding: 0 1.25rem 4rem; }
+      nav { padding: 0 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Eight Academy</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-title">Roadmap Semana 1</span>
+  <a class="nav-back" href="index.html">← Inicio</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">🗓 Semana 1 · Hackathon 2026</div>
+  <h1>Roadmap <em>Semana 1</em></h1>
+  <p>6 entregables obligatorios. Marca cada uno al completarlo — tu progreso se guarda automáticamente por equipo.</p>
+</div>
+
+<div class="container">
+
+  <!-- TEAM -->
+  <div class="team-card">
+    <label for="team-name">👥 Equipo:</label>
+    <input type="text" id="team-name" placeholder="Nombre de tu equipo" />
+    <button class="btn btn-primary" onclick="loadTeam()">Cargar progreso</button>
+    <div class="team-indicator" id="team-indicator"></div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar" id="pbar"></div></div>
+    <div class="progress-label">
+      <span id="plabel">0 de 6 entregables completados</span>
+      <span class="progress-pct" id="ppct">0%</span>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <ul class="timeline" id="timeline"></ul>
+
+  <!-- CELEBRATION -->
+  <div class="celebration" id="celebration">
+    <span>🏆</span>
+    ¡Semana 1 completa! Ya pueden pasar a la Semana 2.
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-actions">
+    <button class="btn btn-ghost" onclick="resetAll()">↺ Reiniciar progreso</button>
+    <a class="btn btn-ghost" href="index.html">← Volver al inicio</a>
+  </div>
+
+</div>
+
+<script>
+const ENTREGABLES = [
+  {
+    id: 'readme',
+    title: 'README.md',
+    type: 'Documento', typeClass: 'badge-doc',
+    desc: 'Descripción del proyecto, equipo, ODS, problema y solución.',
+    subtasks: [
+      'Nombre del equipo y de los integrantes con roles',
+      'Problema que se quiere resolver (1–2 párrafos)',
+      'Solución propuesta y cómo funciona',
+      'ODS al que se vincula (4, 9 o 13)',
+      'Stack o tecnologías que se usarán'
+    ],
+    tip: 'Va en la raíz del repositorio de GitHub. Si alguien abre el repo sin contexto, debe entender el proyecto en 2 minutos.'
+  },
+  {
+    id: 'whitepaper',
+    title: 'Whitepaper v0.1',
+    type: 'Documento', typeClass: 'badge-doc',
+    desc: 'Documento técnico inicial con problema, solución y mercado.',
+    subtasks: [
+      'Resumen ejecutivo (medio página)',
+      'Planteamiento del problema con datos',
+      'Descripción técnica de la solución',
+      'Tamaño y descripción del mercado objetivo',
+      'Modelo de uso o adopción'
+    ],
+    tip: 'Es un v0.1, no la versión final. Apunta a 3–5 páginas. Lo perfeccionarán en semanas siguientes.'
+  },
+  {
+    id: 'mercado',
+    title: 'Investigación de mercado',
+    type: 'Documento', typeClass: 'badge-doc',
+    desc: 'Análisis de competencia, usuarios potenciales y oportunidad.',
+    subtasks: [
+      'Listar 3–5 competidores o alternativas existentes',
+      'Tabla comparativa: qué hacen ellos vs qué hace tu proyecto',
+      'Definir 1–2 perfiles de usuario (buyer persona)',
+      'Tamaño estimado del mercado (TAM / SAM / SOM básico)',
+      'Oportunidad: ¿qué hueco llenas?'
+    ],
+    tip: 'No inventen datos. Si no encuentran números, citen la fuente que sí tienen y digan qué falta investigar.'
+  },
+  {
+    id: 'ods',
+    title: 'Justificación ODS',
+    type: 'Documento', typeClass: 'badge-doc',
+    desc: 'Vínculo del proyecto con al menos una ODS (4, 9 o 13).',
+    subtasks: [
+      'Elegir la ODS principal (Educación 4, Industria 9 o Clima 13)',
+      'Explicar el vínculo concreto (no genérico)',
+      'Identificar la meta específica dentro de la ODS',
+      'Indicadores medibles del impacto esperado',
+      'ODS secundarias si aplica'
+    ],
+    tip: '"Mi proyecto ayuda a la educación" no basta. Hay que aterrizar a una meta concreta de la Agenda 2030.'
+  },
+  {
+    id: 'wireframes',
+    title: 'Wireframes / Arquitectura',
+    type: 'Diseño', typeClass: 'badge-design',
+    desc: 'Diseño visual o técnico de la solución.',
+    subtasks: [
+      'Decidir: ¿wireframes (UI) o diagrama de arquitectura (sistema)?',
+      'Si UI: pantallas principales en Figma, Excalidraw o papel',
+      'Si arquitectura: componentes, base de datos, APIs y flujo de datos',
+      'Marcar las 3 acciones más importantes del usuario',
+      'Exportar a PNG/PDF y subir al repo'
+    ],
+    tip: 'Wireframe = cómo se ve. Arquitectura = cómo funciona por dentro. Pueden hacer ambos si el tiempo alcanza.'
+  },
+  {
+    id: 'canvas',
+    title: 'Canvas del proyecto',
+    type: 'Documento', typeClass: 'badge-doc',
+    desc: 'Modelo de negocio o canvas hackathon.',
+    subtasks: [
+      'Propuesta de valor (qué resuelves y para quién)',
+      'Segmento de clientes / usuarios',
+      'Canales para llegar al usuario',
+      'Recursos y actividades clave',
+      'Posibles fuentes de ingreso o sostenibilidad'
+    ],
+    tip: 'Pueden usar Lean Canvas o Business Model Canvas. Lo importante es que quepa en una hoja.'
+  }
+];
+
+let currentTeam = '';
+let state = {};
+
+function storageKey() {
+  return currentTeam
+    ? `hackathon_s1_${currentTeam.toLowerCase().trim().replace(/\s+/g,'_')}`
+    : 'hackathon_s1_default';
+}
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(storageKey()) || '{}'); }
+  catch { return {}; }
+}
+
+function saveState() {
+  try { localStorage.setItem(storageKey(), JSON.stringify(state)); }
+  catch(e) { console.error(e); }
+}
+
+function render() {
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = '';
+  let done = 0;
+
+  ENTREGABLES.forEach((e, idx) => {
+    const isDone = !!state[e.id]?.done;
+    const isOpen = !!state[e.id]?.open;
+    const subState = state[e.id]?.sub || {};
+    if (isDone) done++;
+
+    const li = document.createElement('li');
+    li.className = 'step' + (isDone ? ' done' : '') + (isOpen ? ' open' : '');
+    li.dataset.num = idx + 1;
+
+    const subItems = e.subtasks.map((s, i) => `
+      <li class="sub-item ${subState[i] ? 'checked' : ''}">
+        <input type="checkbox" id="${e.id}-${i}" ${subState[i] ? 'checked' : ''}
+          onchange="toggleSub('${e.id}', ${i})" />
+        <label for="${e.id}-${i}">${s}</label>
+      </li>`).join('');
+
+    li.innerHTML = `
+      <div class="step-head">
+        <div class="step-check" onclick="event.stopPropagation(); toggleDone('${e.id}')" title="Marcar como completado">
+          <span class="step-check-ico">✓</span>
+        </div>
+        <div class="step-info" onclick="toggleOpen('${e.id}')">
+          <div class="step-title-row">
+            <span class="step-title">${e.title}</span>
+            <span class="badge ${e.typeClass}">${e.type}</span>
+          </div>
+          <p class="step-desc">${e.desc}</p>
+        </div>
+        <button class="step-toggle" onclick="toggleOpen('${e.id}')" aria-label="Expandir">▾</button>
+      </div>
+      <div class="step-body">
+        <div class="step-body-inner">
+          <ul class="sub-list">${subItems}</ul>
+          <p class="tip"><strong>💡 Tip:</strong> ${e.tip}</p>
+        </div>
+      </div>`;
+
+    tl.appendChild(li);
+  });
+
+  const pct = Math.round((done / ENTREGABLES.length) * 100);
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('plabel').textContent = `${done} de ${ENTREGABLES.length} entregables completados`;
+  document.getElementById('ppct').textContent = pct + '%';
+  document.getElementById('celebration').classList.toggle('show', done === ENTREGABLES.length);
+}
+
+function toggleDone(id) {
+  if (!state[id]) state[id] = {};
+  state[id].done = !state[id].done;
+  saveState(); render();
+}
+
+function toggleOpen(id) {
+  if (!state[id]) state[id] = {};
+  state[id].open = !state[id].open;
+  saveState(); render();
+}
+
+function toggleSub(id, i) {
+  if (!state[id]) state[id] = {};
+  if (!state[id].sub) state[id].sub = {};
+  state[id].sub[i] = !state[id].sub[i];
+  saveState(); render();
+}
+
+function loadTeam() {
+  const v = document.getElementById('team-name').value.trim();
+  if (!v) return;
+  currentTeam = v;
+  state = loadState();
+  const ind = document.getElementById('team-indicator');
+  ind.textContent = '✓ ' + v;
+  ind.classList.add('show');
+  render();
+}
+
+function resetAll() {
+  if (!confirm('¿Reiniciar todo el progreso' + (currentTeam ? ' del equipo "' + currentTeam + '"' : '') + '?')) return;
+  state = {};
+  saveState(); render();
+}
+
+// Enter en el input de equipo
+document.getElementById('team-name').addEventListener('keydown', e => {
+  if (e.key === 'Enter') loadTeam();
+});
+
+// Init
+state = loadState();
+render();
+</script>
+</body>
+</html>
