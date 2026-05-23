@@ -694,6 +694,66 @@
             color: #ef4444;
         }
 
+        /* Partner Strip */
+        .partner-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 12px 28px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,165,0,0.25);
+            border-radius: 18px;
+            margin: 28px auto 0;
+            width: fit-content;
+            animation: fadeInUp 0.8s ease-out 1s both;
+        }
+        .partner-strip .partner-label {
+            font-size: 0.78em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+        }
+        .partner-strip .partner-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255,255,255,0.15);
+        }
+        .partner-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 6px 16px;
+            border: 1px solid rgba(255,165,0,0.2);
+            transition: all 0.3s;
+        }
+        .partner-logo-wrap:hover {
+            background: rgba(255,255,255,0.10);
+            border-color: rgba(255,165,0,0.5);
+        }
+        .n8n-logo-svg { width: 56px; height: auto; }
+        .partner-footer {
+            padding: 28px 40px;
+            background: linear-gradient(135deg, rgba(255,100,0,0.06), rgba(255,165,0,0.04));
+            border-top: 1px solid rgba(255,165,0,0.15);
+            border-bottom: 1px solid rgba(79,124,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .partner-footer .pf-label {
+            font-size: 0.82em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .navbar { padding: 14px 20px; }
@@ -764,6 +824,10 @@
                     <div class="stat-label">Inicio oficial de la Hackathon</div>
                 </div>
                 <div class="stat">
+                    <div class="stat-number">27 JUN</div>
+                    <div class="stat-label">Gran Final 🏆</div>
+                </div>
+                <div class="stat">
                     <div class="stat-number">TOP 20</div>
                     <div class="stat-label">Exoneración académica para finalistas</div>
                 </div>
@@ -771,10 +835,19 @@
                     <div class="stat-number">8-18</div>
                     <div class="stat-label">Años de Edad</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">Top 20</div>
-                    <div class="stat-label">Finalistas</div>
-                </div>
+            </div>
+
+            <!-- Partner N8N -->
+            <div class="partner-strip">
+                <span class="partner-label">Partner Oficial</span>
+                <div class="partner-divider"></div>
+                <a href="https://n8n.io" target="_blank" rel="noopener" class="partner-logo-wrap">
+                    <!-- n8n SVG Logo -->
+                    <svg class="n8n-logo-svg" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <text x="0" y="22" font-family="'Space Grotesk', Arial, sans-serif" font-size="26" font-weight="900" fill="#FF6D5A">n8n</text>
+                    </svg>
+                    <span style="font-size:0.8em; color:var(--text-secondary); font-weight:600;">Automatización</span>
+                </a>
             </div>
         </div>
     </section>
@@ -891,7 +964,7 @@
         <div class="section-header reveal">
             <span class="section-tag">Agenda</span>
             <h2 class="section-title">Cronograma hackathon</h2>
-            <p class="section-subtitle">17 días de innovación intensiva, mentoría, validación y preparación de gran final.</p>
+            <p class="section-subtitle">44 días de innovación intensiva — del 14 de Mayo al <strong style="color:var(--accent-cyan)">27 de Junio 2026</strong>.</p>
         </div>
         <div class="timeline-container reveal">
             <div class="timeline-line"></div>
@@ -937,19 +1010,35 @@
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <div class="timeline-date">29 Mayo</div>
-                    <div class="timeline-title">🎯 Preparación Gran Final</div>
-                    <div class="timeline-desc">Ensayo de presentaciones, coaching de storytelling y últimos ajustes para la gran final.</div>
+                    <div class="timeline-date">29 Mayo – 7 Junio</div>
+                    <div class="timeline-title">🛠️ Puesta en Marcha</div>
+                    <div class="timeline-desc">Despliegue de soluciones, configuración de flujos con n8n, validación técnica y ajuste de integraciones en entorno real.</div>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <div class="timeline-date">30 Mayo</div>
-                    <div class="timeline-title">🏆 Gran Final: Pitch & Defense</div>
-                    <div class="timeline-desc">Presentación final ante jurado, defensa del proyecto y cierre estelar de la Hackathon.</div>
+                    <div class="timeline-date">8-19 Junio</div>
+                    <div class="timeline-title">📊 Desarrollo Avanzado + Mentorías</div>
+                    <div class="timeline-desc">Iteraciones finales, incorporación de feedback de mentores, mejora de UX, documentación y fortalecimiento del storytelling del proyecto.</div>
                 </div>
                 <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">20-26 Junio</div>
+                    <div class="timeline-title">🎤 Repasos Pitch Final</div>
+                    <div class="timeline-desc">Ensayos intensivos de presentación, simulacros ante jurado, coaching de storytelling, afinación del pitch deck y preparación para Q&A.</div>
+                </div>
+                <div class="timeline-dot" style="background:var(--accent-purple); box-shadow:0 0 20px rgba(168,85,247,0.6);"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content" style="border-color:rgba(0,229,255,0.4); background:linear-gradient(135deg, rgba(0,229,255,0.08), rgba(79,124,255,0.08));">
+                    <div class="timeline-date" style="color:var(--accent-green); font-size:1.2em;">🗓 27 Junio 2026</div>
+                    <div class="timeline-title" style="font-size:1.3em;">🏆 GRAN FINAL: Pitch & Defense</div>
+                    <div class="timeline-desc">Presentación final ante jurado experto, defensa del proyecto, premiación y cierre estelar de la Hackathon Eight Academy 2026.</div>
+                </div>
+                <div class="timeline-dot" style="background:var(--accent-cyan); width:22px; height:22px; box-shadow:0 0 30px rgba(0,229,255,0.8);"></div>
             </div>
         </div>
     </section>
@@ -1235,9 +1324,21 @@
         </div>
     </section>
 
+    <!-- Partner Footer -->
+    <div class="partner-footer">
+        <span class="pf-label">Con el apoyo de nuestro partner oficial:</span>
+        <a href="https://n8n.io" target="_blank" rel="noopener" class="partner-logo-wrap" style="text-decoration:none;">
+            <svg viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:64px; height:auto;">
+              <text x="0" y="22" font-family="'Space Grotesk', Arial, sans-serif" font-size="26" font-weight="900" fill="#FF6D5A">n8n</text>
+            </svg>
+            <span style="font-size:0.85em; color:var(--text-secondary); font-weight:600;">Automatización de Workflows</span>
+        </a>
+        <span style="font-size:0.82em; color:var(--text-secondary); max-width:400px; text-align:center;">n8n potencia la automatización de los proyectos finalistas de la Hackathon Eight Academy 2026</span>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
-        <p>© 2026 Hackathon Eight Academy. Todos los derechos reservados.</p>
+        <p>© 2026 Hackathon Eight Academy — Partner Oficial: <a href="https://n8n.io" target="_blank" rel="noopener" style="color:#FF6D5A; text-decoration:none; font-weight:700;">n8n</a> · Todos los derechos reservados.</p>
     </footer>
 
     <script>
